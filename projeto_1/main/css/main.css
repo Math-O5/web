@@ -1,0 +1,14 @@
+header {
+    display: block;
+  }
+.section {
+    display: inline-block;
+}
+
+
+div p {
+	font-family: "Times New Roman", Times, serif;
+	color: #500082;
+	font-size: 2rem;
+	font-weight: bold;
+}
