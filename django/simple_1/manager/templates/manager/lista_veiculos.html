@@ -1,0 +1,10 @@
+<h2> Listas de Veiculos </h2>
+<tbody>
+    {% for veiculo in veiculos %}
+    <tr>
+        <td>{{ veiculo.placa }}</td>
+        <td>{{ veiculo.marca.nome }}</td>
+        <td>{{ veiculo.proprietario.nome }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
