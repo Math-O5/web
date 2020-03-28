@@ -22,6 +22,12 @@ email: mathfern4@gmail.com
 }
 
 /* card  */
+.card ul {
+    margin: auto;
+    display: inline-block;
+    padding: 10px;
+    width: 100%;
+}
 
 .card ul li {
     display: inline-block;
@@ -39,8 +45,7 @@ email: mathfern4@gmail.com
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.card h2, h3, h4, h5 {
-    margin: 5px;
+.card h2, h3, h4, h5, a {
     color: rgb(131, 115, 131);
 }
 
@@ -56,16 +61,25 @@ span.weak {
 .card:hover {
     box-shadow: 3px 3px 0 3px rgb(209, 74, 74);
 }
-.text-center {
-    text-align: center;
-}
 
 .card.text-center h1::selection, strong::selection {
     background-color: rgb(214, 39, 39);
     color: white;
-
+    
 }
 
+/* text */
+.text-center {
+    text-align: center;
+}
+
+/* buttons */
+.button.text-center {
+    background-color: rgb(78, 78, 200);
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+}
 /* icons */
 .fa.fa-facebook {
     font-size: 150%;
@@ -75,7 +89,6 @@ span.weak {
 .fa.fa-linkedin {
     font-size: 150%;
     color: rgb(78, 78, 200);
-
 }
 
 .fa.fa-twitter {
@@ -84,6 +97,15 @@ span.weak {
 
 }
 
+.fa.fa-github {
+    font-size: 150%;
+    color: rgb(78, 78, 200);
+}
+
+/* list */
+.list-inline {
+    display: inline;
+}
 
 /* ids */
 
@@ -100,14 +122,15 @@ table#movies tbody tr {
     margin: 20px 0px;
 }
 
-table#movies tbody tr td{
+table#movies tbody tr td {
     margin: 0px 10px;
 }
 
-table#movies tbody tr td h3{
+table#movies tbody tr td h3 {
     padding: 0;
     margin: 0px 0px 5px 0px;
 }
+
 /* profile */
 #img-profile {
     border-radius: 300px;
@@ -146,5 +169,4 @@ table#movies tbody tr td h3{
             border-radius: 0 0 10px 10px;
             box-shadow: 2px 2px 4px 2px rgb(165, 165, 165);
         }
-        
 }
