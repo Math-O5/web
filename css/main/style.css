@@ -1,8 +1,18 @@
+/* 
+*************************************
+Mathias Fernandes Duarte Coelho
+NUSP 10734352
+emailUSP: mathfernandes@usp.br
+email: mathfern4@gmail.com
+*************************************
+*/
+
 /* strctures */
 * {
     margin: 0px;
 }
 
+/* container */
 .container {
     background-color: rgb(218, 220, 224);
     margin: 0px;
@@ -11,6 +21,8 @@
     flex-wrap: wrap;
 }
 
+/* card  */
+
 .card ul li {
     display: inline-block;
     padding: 10px;
@@ -18,16 +30,17 @@
 
 .card ul li a {
     text-decoration: none;
-    color: rgb(36, 36, 36);
+    color: rgb(78, 78, 200);
+
 }
 
 .card h1, strong {
-    color: rgb(109, 57, 109);
-    /* font-family: 'Times New Roman', Times; */
+    color: rgb(78, 78, 200);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.card h2 {
+.card h2, h3, h4, h5 {
+    margin: 5px;
     color: rgb(131, 115, 131);
 }
 
@@ -56,22 +69,55 @@ span.weak {
 /* icons */
 .fa.fa-facebook {
     font-size: 150%;
+    color: rgb(78, 78, 200);
 }
 
 .fa.fa-linkedin {
     font-size: 150%;
+    color: rgb(78, 78, 200);
+
 }
 
 .fa.fa-twitter {
     font-size: 150%;
+    color: rgb(78, 78, 200);
+
 }
 
+
 /* ids */
+
+/* movie */
+table#movies tbody tr td img {
+    width: 60px;
+    height: 120px;
+    border: 4px black;
+    border-style: solid;
+}
+
+table#movies tbody tr {
+    display: flex;
+    margin: 20px 0px;
+}
+
+table#movies tbody tr td{
+    margin: 0px 10px;
+}
+
+table#movies tbody tr td h3{
+    padding: 0;
+    margin: 0px 0px 5px 0px;
+}
+/* profile */
 #img-profile {
     border-radius: 300px;
-    width: 10rem;
-    height: 10rem;
-    padding: 20px;
+    width: 8rem;
+    height: 8rem;
+    border: 3px;
+    padding: 2px;
+    margin: 10px;
+    border-style: dashed;
+    border-color: blue;
 }
 
 /* queries */
@@ -94,7 +140,7 @@ span.weak {
         .card {
             background-color: white;
             margin: 30px auto 30px;
-            padding: 30px 100px 30px;
+            padding: 30px 90px 30px;
             width: 51%;
             box-sizing: border-box;
             border-radius: 0 0 10px 10px;
