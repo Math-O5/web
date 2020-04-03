@@ -8,6 +8,7 @@
 // Change color background 
 function bodystyle() {
     document.body.style.background = "pink";
+    document.body.style.fontFamily = "Bradley Hand, cursive";
     console.log(document.body)
 }
 
