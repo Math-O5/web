@@ -1,31 +1,52 @@
-function putDecoration(name, _debug = 0) {
-    if(_debug===0) {
-        console.log("putDecoration")
-    }
-    let text = document.getElementsByTagName(name)[0]
-    let words = text.innerHTML.split(" ")
-    let decorationText = ''
-    let aux;
-    for( let i = 0;i < words.length; ++i) {
-        if(_debug===0) {
-            decorationText += words[i].length
-        }
-        if(words[i].length >= 8) {
-            decorationText += '<marker class="destaque1">' + words[i] + '</marker> '
-        } else if(words[i].length === 6) {
-            decorationText += '<marker class="destaque2">' + words[i] + '</marker> '
-        } else if(words[i].length === 4 || words[i].length === 5) {
-            decorationText += '<marker class="destaque3">' + words[i] + '</marker> '
-        } else {
-            decorationText += '<marker>' + words[i] + '</marker> '
-        }
-    }
+// ............................................................
+// Mathias Fernandes Duarte Coelho
+// NUSP: 10734352
+// Email: mathfern444@gmail.com
+// EmailUSP: mathfernandes@usp.br
+// ............................................................
 
-    document.getElementsByTagName(name)[0].innerHTML = decorationText
-    if(_debug===0) {
-        console.log(words)
-    }
+// Change color background 
+function bodystyle() {
+    document.body.style.background = "pink";
+    console.log(document.body)
 }
 
-putDecoration("p", 1)
-putDecoration("h1", 1)
+// Fill infos forms 
+function injectForm(nickname, favorites, hometown) {
+    document.getElementById('nickname').innerHTML = nickname;
+    document.getElementById('favorites').innerHTML = favorites;
+    document.getElementById('hometown').innerHTML = hometown;
+}
+
+// Insert image on page
+function injectImg(title, url) {
+    
+    // Create img element. 
+    let img = document.createElement('img');  
+                    
+    // Set the title. 
+    img.title = title 
+    
+    // Set the src property. 
+    img.src = url
+    
+    // Set width and height
+    img.setAttribute("width", "50%")
+    img.setAttribute("heigth", "50%")
+
+    // Append the anchor element to the body. 
+    document.body.appendChild(img);
+}
+
+function injectText(text) {
+    let p = document.createElement('p')
+    p.append(text)
+
+    document.body.appendChild(p)
+}
+
+// call functions
+bodystyle()
+injectForm("Eeney", "Meeny", "Miney")
+injectImg("Sixty_minutes_of_good_music", "eeney.jpg")
+injectText("60 minutes of really good music. Experts, them keeping saying: How humanity do not created it before.")

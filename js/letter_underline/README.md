@@ -1,3 +1,9 @@
+............................................................
+Mathias Fernandes Duarte Coelho
+NUSP: 10734352
+Email: mathfern444@gmail.com
+EmailUSP: mathfernandes@usp.br
+............................................................
 Grifando palavras:
     Grife de rosa todas as palavras com 8 caracteres ou mais.
     Grife de azul todas as palavras com 6 caracteres.

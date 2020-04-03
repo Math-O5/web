@@ -1,18 +1,12 @@
-marker.destaque1 { 
-    background-color: rgb(110, 26, 194);
-    /* font-size: 200%; */
-}
+/* 
+............................................................
+Mathias Fernandes Duarte Coelho
+NUSP: 10734352
+Email: mathfern444@gmail.com
+EmailUSP: mathfernandes@usp.br
+............................................................ 
+*/
 
-marker.destaque2 {
-    background-color: blue;
-    /* font-size: 200%; */
-}
-
-marker.destaque3 {
-    background-color: palevioletred;
-    /* font-size: 200%; */
-}
-
-marker {
-    background-color: none;
+* {
+    font-size: 40px;
 }

@@ -4,6 +4,20 @@ function innerDate()
     document.getElementById("demo").innerHTML = Date()
 }
 
+function breakLine(name, _debug = 0) {
+    if(_debug===0) {
+        console.log("breakLine")
+    }
+    let text = document.getElementsByTagName(name)[0]
+    let words = text.innerHTML.split(' ').join('<\br>')
+    
+    document.getElementsByTagName(name)[0].innerHTML = words
+    if(_debug===0) {
+        console.log(words)
+    }
+}
+
+
 function back() 
 {
     history.back()
@@ -16,25 +30,6 @@ function foward()
 
 
 document.write("Lero Lero!")
-
-function modelCar()
-{
-}
-
-var carName1 = "Volvo XC60"
-var carName2 = "Volvo XC60"
-
-document.getElementsByClassName("car")[0].innerHTML = carName1 + " " + carName2
-
-const s = "a, b, b? it's hun.gry!"
-const names = 'Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand '
-
-const re = ""
-const nameList = names.split(/\s*(?:;|$)\s*/)
-
-const list = s.split(' ')
-console.log(nameList)
-console.log(list)
 
 function styleColor() 
 {
