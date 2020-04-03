@@ -1,0 +1,18 @@
+marker.destaque1 { 
+    background-color: rgb(110, 26, 194);
+    /* font-size: 200%; */
+}
+
+marker.destaque2 {
+    background-color: blue;
+    /* font-size: 200%; */
+}
+
+marker.destaque3 {
+    background-color: palevioletred;
+    /* font-size: 200%; */
+}
+
+marker {
+    background-color: none;
+}
