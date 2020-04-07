@@ -18,21 +18,3 @@ function breakLine(name, _debug = 0) {
 }
 
 
-function back() 
-{
-    history.back()
-}
-
-function foward()
-{
-    history.forward()
-}  
-
-
-document.write("Lero Lero!")
-
-function styleColor() 
-{
-    console.log("styleColor")
-    document.getElementsByClassName("car")[0].innerHTML 
-}

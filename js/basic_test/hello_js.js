@@ -1,6 +1,3 @@
-console.log(
-    window.screen.width
-)
 
 var carName1 = "Volvo XC60"
 var carName2 = "Volvo XC60"
@@ -28,12 +25,6 @@ hello = () => "Hello World";
 hello = (val) => "Hello World" + val;
 
 hello = val => "Hello World" + val;
-
-
-var carName1 = "Volvo XC60"
-var carName2 = "Volvo XC60"
-
-document.getElementsByClassName("car")[0].innerHTML = carName1 + " " + carName2
 
 const s = "a, b, b? it's hun.gry!"
 const names = 'Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand '
