@@ -1,0 +1,17 @@
+body {
+    height: 200px;
+    background: beige;
+  }
+.dot {
+height: 8px; width: 8px;
+border-radius: 4px; /* rounds corners */
+background: blue;
+position: absolute;
+}
+
+#progress {
+  border-bottom: 2px solid blue;
+  width: 0;
+  position: fixed;
+  top: 0; left: 0;
+}

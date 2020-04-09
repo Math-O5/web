@@ -5,5 +5,8 @@ Email: mathfern444@gmail.com</br>
 EmailUSP: mathfernandes@usp.br</br>
 ............................................................
 </h2>
-<p>
-</p>
+<ul>
+    <li>1 Forme uma frase com os inputs e makeMadtalk.html</li>
+    <li>2 Em index.html</li>
+    <li>2.1 Adicionar eventos</li>
+</ul>
