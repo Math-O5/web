@@ -88,8 +88,6 @@ span.weak {
     text-align: center;
 }
 
-
-
 /* icons */
 .fa.fa-facebook {
     font-size: 150%;
@@ -170,13 +168,13 @@ table#movies tbody tr td h3 {
 }
 
 @media (min-width: 500px) {
-        .card {
-            background-color: white;
-            margin: 30px auto 30px;
-            padding: 30px 90px 30px;
-            width: 51%;
-            box-sizing: border-box;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 2px 2px 4px 2px rgb(165, 165, 165);
-        }
+    .card {
+        background-color: white;
+        margin: 30px auto 30px;
+        padding: 30px 90px 30px;
+        width: 51%;
+        box-sizing: border-box;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 2px 2px 4px 2px rgb(165, 165, 165);
+    }
 }

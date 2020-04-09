@@ -7,6 +7,42 @@ EmailUSP: mathfernandes@usp.br
 ............................................................ 
 */
 
+/* Summary */
+/* 2. Brick beatiful collors */
+/* 3. makeMadTalk */
+/* 4. Ajax request */
+
+/* 2. Brick beatiful collors */
+div {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+.brown {
+background-color: brown;
+}
+
+.green {
+background-color: green;
+}
+
+.blue {
+background-color: blue;
+}
+.purple {
+background-color: purple;
+}
+
+.yellow {
+background-color: yellow;
+}
+
+.random {
+    background-color: black;
+}
+
+/* 3. makeMadTalk */
 marker.destaque1 { 
     background-color: rgb(110, 26, 194);
     /* font-size: 200%; */
@@ -24,4 +60,42 @@ marker.destaque3 {
 
 marker {
     background-color: none;
+}
+
+/* 4. Ajax request */
+.container {
+    background-color: rgb(218, 220, 224);
+    display: flex;
+    margin: 30px auto 30px;
+    padding: 30px 90px 30px;
+    width: 45%;
+    height: unset;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+.caixa {
+    background-color: black;
+    color: white;
+    margin: 30px auto 30px;
+    width: 250px;
+    height: 250px;
+    padding: 10px 10px 0px 10px;
+    box-sizing: border-box;
+    text-align: right;
+    
+}
+
+.button {
+    background-color: brown;
+    border-radius: 30px;
+    box-sizing: border-box;
+    color: white;
+    height: 70px;
+    padding: 10px 10px 10px 10px;
+    font-size: larger;
+    font-weight: bold;
+    margin: 30px auto 30px;
+    text-align: center;
+    width: 250px;
 }

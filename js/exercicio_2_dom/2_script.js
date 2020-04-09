@@ -1,3 +1,9 @@
+// ............................................................
+// Mathias Fernandes Duarte Coelho
+// NUSP: 10734352
+// Email: mathfern4@gmail.com
+// EmailUSP: mathfernandes@usp.br
+// ............................................................
 function selectLabel() {
     let text = document.getElementsByClassName("selected")[0];
     let textBefore = text.textContent;
