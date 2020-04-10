@@ -1,0 +1,98 @@
+<div wm-slide>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg"
+        alt="Muro  da cidade"
+        width="320" height="342"
+        title="Muro da cidade">
+    </p>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif">
+    </p>
+    <p class="circular">
+            <img src="http://files.cod3r.com.br/curso-web/imagem3.png"
+            alt= "Rio de janeiro"
+            height="342">
+    </p>
+    <p clas='texto'>
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg"
+        alt= "Altar" >
+        fnfjnnjwkndjkwndj
+        wnjdnjwndjwndjwdnjdn
+        jnndjwndjdnj
+    </p>
+    <p class="texo">
+    </p>
+    
+    <p>
+        <picture>
+            <source srcset="http://files.cod3r.com.br/curso-web/avatar.jpg" media="{min-width: 300px}">
+            <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" widht: 40px;>
+        </picture>
+    </p>
+</div>
+
+<style>
+    p {
+        position: absolute;
+        display: none;
+    }
+
+    .circular {
+        width:513px;
+        background-color: #444;
+    }
+
+    .texto {
+        width: 400px;
+    }
+
+    .texto img {
+        margin-right: 12px 4px 6px;
+    }
+
+    .cidade {
+        width:513px;
+        background-position: center;
+
+    }
+</style>
+
+<script>
+    function mover(elem, inicio, fim, passo, callback) {
+        const novoInicio = inicio - passo
+        if(novoInicio >= fim) {
+            elem.style.left = novoInicio + 'px'
+            setTimeout(() => mover(elem, novoInicio, fim, passo, callback), 7)
+        } else {
+            callback()
+        }
+    }
+
+//
+    function slider() {
+        const elementos = document.querySelectorAll('[wm-slide] > p')
+        const slides = Array.from(elementos)
+        exibirSlides(slides, slides[0])
+    }
+
+    function exibirSlides(slides, slide) {
+        slide.style.display = 'block'
+        
+        const inicio = innerWidth //larura da area
+        const fim = -slide.clientWidth
+
+        slide.style.left = `${inicio}px`
+
+        mover(slide, inicio, fim, 5, () => {
+            slide.style.display = 'none'
+            exibirSlides(slides, getProximo(slides, slide))
+        })
+    }
+
+    function getProximo(lista, atual) {
+        const i = lista.indexOf(atual) +1
+        return lista[i % lista.length]
+    }
+
+    slider()
+</script>
