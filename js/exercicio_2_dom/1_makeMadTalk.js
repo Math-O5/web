@@ -6,15 +6,15 @@
 // ............................................................
 
 function makeMadTalk() {
-    console.log("You're welcome at makeMadTalk")
-    let noun = document.getElementById('noun')
-    let adjective = document.getElementById('adjective')
-    let person = document.getElementById('person')
+    console.log("You're welcome at makeMadTalk");
+    let noun = document.getElementById('noun');
+    let adjective = document.getElementById('adjective');
+    let person = document.getElementById('person');
 
     document.getElementById('story').innerHTML = person.value + " claims that " + noun.value + " is " + adjective.value;
 }
 
-let button = document.getElementById('lib-button')
+let button = document.getElementById('lib-button');
 button.addEventListener("click", (event) => {
-    makeMadTalk()
-})
+    makeMadTalk();
+});
