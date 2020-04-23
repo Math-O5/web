@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>   
+    <div id="app">
+        <img v-bind:src="srcImg" v-bind:title="titleImg">
+        <hr>
+        <a v-bind:href="url">{{titleUrl}}</a>
+        <hr>
+        <p v-text='text'></p>
+        <p v-html='textHtml'></p>
+
+        <p>IF</p>
+        <input type="text" v-model="textDigitado">
+        {{textDigitado}}
+        <div v-if="textDigitado == 1">
+            <img :src="srcImg[0]" :title="titleImg">
+        </div>
+        <div v-else-if="textDigitado == 2">
+            <img :src="srcImg[1]" :title="titleImg">
+        </div>
+        <div v-else-if="textDigitado == 3">
+            <img :src="srcImg2" :title="titleImg">
+        </div>
+        <div v-else="textDigitado == 3">
+            <img :src="srcImg[3]" :title="titleImg">
+        </div>
+        <p>FOR</p>
+        <div v-for="(image, index) in srcImg">
+            <img :src="image" width="30%">{{index}}<img>
+        </div>
+        <ul>
+            <li v-for="(value, key, index) in itens[1]">
+                {{index}} - {{key}} : {{value}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(value, key, index) in usuario">
+                {{index}} - {{key}} : {{value}}
+            </li>
+        </ul>
+        </br>
+        <input type="text" v-model="textDigitado">
+        <button @click="alterarNome()">
+            Chamar altera nome
+        </button>
+        </br>
+        <label v-text="textDigitado"></label>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                srcImg: ['vue.png', 'vue1.png', 'vue2.jpeg'],
+                titleImg: 'LOGO Vue',
+            
+                url: 'www.nada.com',
+                titleUrl: 'nada.com',
+                
+                text: 'um texto qualquer',
+                textHtml: '</br><strong>isso é HTML</strong></br>',
+                textDigitado: '',
+
+                itens: [
+                    {nome: 'uva', cor: 'roxo'},
+                    {nome: 'pera', cor:'azul'},
+                    {nome: 'tomate', cor: 'vermelho'},
+                ],
+                usuario : {
+                    nome: 'x',
+                    tel: 'c',
+                    a: 'b',
+                },
+            },
+            methods: {
+                alterarNome() {
+                    this.textDigitado = "Andrade"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        {{nome}}
+        <button @click="imprimir1()">
+            CHAMAR MUDANÇA NO ESCOPO DA APLICAÇÂO
+        </button>
+    </div>
+
+    <div id="aux">
+        {{nome}}
+    </div>
+    <button onclick="imprimir()">
+        CHAMAR MUDANÇA
+    </button>
+    <script>
+        let mensagem = "Meu app"
+
+        const imprimir = () =>  {
+            app.nome = "Outra mudança"
+        }
+        const app = new Vue({
+            el: '#app',
+            data: {
+                nome: `${mensagem}`
+            }, 
+            methods: {
+                imprimir1() {
+                    this.nome = 'mudança dentro do escopo'
+                }
+            },
+        })
+        const aux = new Vue({
+            el: '#aux',
+            data: {
+                nome: `${mensagem} auxiliar`
+            }
+        })
+    </script>
+</body>
+</html>

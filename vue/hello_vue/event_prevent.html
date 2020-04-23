@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>   
+    <div id="app">
+        <p>Change field from code</p>
+        <form v-on:submit="alterarNome('a', $event)">
+            <input type="text" v-model="textDigitado">
+            <button type="submit">
+                Add
+            </button>
+        </form>
+
+        <p>Change from input</p>
+        <input type="text" v-model="textDigitado"
+        v-on:keyup.enter="addName()"/>
+        <ul>
+            <li v-for="item in array"
+            @click="alerta($event)">
+                {{item}}
+            </li>
+        </ul>
+        <input @click="corP($event.target.value)" type="radio" name="cor" value="green">
+        green
+        <input @click="corP($event.target.value)" type="radio" name="cor" value="red">
+        red
+        <input @click="corP($event.target.value)" type="radio" name="cor" value="yellow">
+        yellow
+        <input @click="corP($event.target.value)" type="radio" name="cor" value="white">
+        white
+
+        <p :class="classPar">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat eius odit quidem itaque ducimus quibusdam at animi. Modi pariatur tempora at quia ratione recusandae excepturi incidunt? Porro accusamus error maxime!</p>
+       
+        <button @click="vermelho()">vermelho</button>
+        <button @click="verde()">verder</button>
+        <button @click="borda()">borda</button>
+        <button @click="incolor()">incolor</button>
+        <p ref="fristParagraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa facere eos dolor fugiat officiis, suscipit impedit distinctio, architecto quibusdam necessitatibus molestias mollitia consequuntur veritatis blanditiis quisquam amet modi, fuga sit.
+        </p>
+    </div>
+
+    <style>
+        .green {
+            background-color: green;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+        .white {
+            background-color: white;
+        }
+        .red {
+            background-color: red;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                text: 'um texto qualquer',
+                textHtml: '</br><strong>isso é HTML</strong></br>',
+                textDigitado: '',
+                array: [],
+                classPar: '',
+            },
+            methods: {
+                alterarNome(sobrenome, event) {
+                    console.log(event)
+                    event.preventDefault();
+                    this.textDigitado = sobrenome
+                },
+                addName() {
+                    this.array.push(this.textDigitado)
+                    this.textDigitado = ''
+                },
+                alerta(event) {
+                    alert(event.target.textContent.trim())
+                    element =  event.target
+                    if(element.style.backgroundColor == 'red') {
+                        event.target.style = "background: white"
+                    } else {
+                        event.target.style = "background: red"
+                    }
+                },
+                corP(classCor) {
+                    this.classPar = classCor
+                },
+                vermelho() {
+                    this.$refs.fristParagraph.style.background = 'red'
+                },
+                verde() {
+                    this.$refs.fristParagraph.style.background = 'green'
+                },
+                borda() {
+                    this.$refs.fristParagraph.style.border = '2px solid black'
+                },
+                incolor() {
+                    this.$refs.fristParagraph.style = ''
+                }
+            }
+        })
+    </script>
+</body>
+</html>

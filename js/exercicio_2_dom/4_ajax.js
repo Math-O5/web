@@ -4,6 +4,7 @@
 // Email: mathfern4@gmail.com
 // EmailUSP: mathfernandes@usp.br
 // ............................................................
+let cores;
 let id = 1; // number of request
 
 // apply color on class name
