@@ -1,0 +1,91 @@
+/*
+# Nome: Mathias Fernandes 
+# n° 10734352
+# email: mathfern4@gmail.com
+# email usp: mathfernandes@usp.br
+# atividade sobre vue 
+*/
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+
+}
+.form-container {
+    border-radius: 5px;
+    background-color: #e3eff8;
+    padding: 20px;
+}
+
+select {
+    color: white;
+    font-weight: bold;
+    background-color: rgb(38, 136, 136);
+}
+
+label {
+    font-weight: bold;
+}
+
+/* cols */
+.col-6 {
+    width: 48.33333333%;
+    display: inline-block;
+}
+
+.col-12 {
+    width: 97.33333333%;
+}
+
+.col-md-6 {
+    width: 49.88888888%;
+    display: inline-block;
+}
+
+.col-md-4 {
+    width: 33.22222222%;
+    justify-content: left;
+    display: inline-block;
+}
+
+/* inputs */
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+width: 100%;
+background-color: rgb(15, 136, 15);
+color: rgb(255, 255, 255);
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+/* validation */  
+.input_invalid {
+    background-color: #fac3c3;
+    border: 1px solid #ffdddd;
+}
+
+.input_valid {   
+    background-color: #ffffff;
+    border: 0px;
+}
+
+.invalid_forms b, ul li {
+    color: rgb(185, 15, 15);
+}
+

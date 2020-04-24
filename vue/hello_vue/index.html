@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
     
@@ -16,28 +17,8 @@
         <p>{{outraFun()}}</p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-        new Vue({
-            el: '#app',
-            data: {
-                msg: 'Teste de Mensagem.',
-                isTrue: true,
-                valuesArray: ['a', 'b', 'c'],
-                obj: {
-                    nome: 'a'
-                },
-                fun: function() {
-                    return 'Essa é uma  função.'
-                }
-            },
-            methods: {
-                outraFun() {
-                    return 'value 2 of Array: ' + this.valuesArray[1];
-                }
-            }
-
-        })
+      
     </script>
 </body>
 </html>

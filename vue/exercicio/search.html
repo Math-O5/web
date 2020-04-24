@@ -1,0 +1,70 @@
+<!-- 
+# Nome: Mathias Fernandes 
+# n° 10734352
+# email: mathfern4@gmail.com
+# email usp: mathfernandes@usp.br
+# atividade sobre vue 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js Search</title>
+    <link rel="stylesheet" href="search.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app" class="container-fluid">
+      <h1>Vue.js Search</h1>
+      <div class="form-group">
+        <input type="text"  v-model="search" class="form-control" placeholder="Search term">
+      </div>
+
+      <div class="result-container">
+        <h2>Results<span></span></h2>
+        <ul class="list-group">
+          <li v-for="ninja in results" class="list-group-item">
+            {{ ninja | capitalize}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      const app = new Vue({
+          el: "#app",
+          data: {
+            ninjas: ['sakura', 'uzumaki naruto', 'uchiha sasuke', 'hattori hanzo', 'rock lee', 'tenten', 'shikamaru nara', 'asuma sarutobi',
+            'ino yamanaka', 'tayuya', 'hinata hyūg', 'shino aburame', 'kurenai yuhi', 'yamato'],
+            search: '',
+          },
+          created() {
+            alert("Welcome to our Ninja database.")
+          },
+          // Computed will not repat until update
+          computed: {
+            // return all values which match in ninjas with value
+            results() {
+              return this.ninjas.filter(ninja => { 
+                return ninja.toLowerCase().includes(this.search.toLowerCase())
+              });
+            },
+          },
+          filters: {
+            // catch every single word in a string and capitalize it.
+            capitalize: function (value) {
+              if (!value) return ''
+
+              // value == 'naruto uzumaki'
+              value = value.toString().split(' ')
+              for(s in value) {
+                value[s] = value[s].charAt(0).toUpperCase() + value[s].substring(1)
+              }
+
+              // value == ['Naruto', 'Uzumaki'], the join with space.
+              return value.join(' ')
+            },
+          },
+      });
+    </script>
+  </body>
+</html>
