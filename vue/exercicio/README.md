@@ -1,9 +1,6 @@
-# Nome: Mathias Fernandes 
-# n° 10734352
-# email: mathfern4@gmail.com
-# email usp: mathfernandes@usp.br
-# atividade sobre vue
-
+<h2>Exercicios - os resultados devem seguir a execução e layout dos arquivos</h2>
+<p>Faça uma barra de pesquisa que mostre os resultados em tempo real.</p>
+<p>Faça um form e válidade dos campo.</p>
 <h2> Questões </h2>
 </br>
 <p> O que são Componentes vue.js? </p>
