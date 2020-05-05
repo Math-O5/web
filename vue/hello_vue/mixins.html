@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <button onclick="carregar()">
+        CHAMAR MUDANÇA
+    </button>
+    <div id="app">
+        {{ titulo }}
+        <button @click.stop.prevent="getUsers()">SUBMIT</button>
+    </div>
+    <script>
+        let mixin = {
+            methods: {
+                getUsers() {
+                    console.log('get users')
+                }
+            }
+        }
+
+        const app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Vuejs do jeito ninja!"
+            }, 
+            methods: {
+
+            },
+            mixins: [mixin], 
+        })
+  
+    </script>
+</body>
+</html>

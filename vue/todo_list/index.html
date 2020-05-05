@@ -1,0 +1,202 @@
+<!-- 
+# Nome: Mathias Fernandes 
+# n° 10734352
+# email: mathfern4@gmail.com
+# email usp: mathfernandes@usp.br
+# atividade sobre vue 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>TODO</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app" class="container-fluid">
+      <h1>Vue.js To Do List</h1>
+      <add-todo></add-todo>
+    </div> 
+    
+    <!-- Add tem dois componenetes filhos, que são seus resultados. -->
+    <template id="add">
+      <div class="form-group">
+        <form action="" method="post" v-on:submit.prevent="addTask">
+          <input type="text"  v-model="new_task" placeholder="Add new task" v-bind:class="error">
+          <button type="submit">ADD</button>
+        </form>
+        <div class="result-container">
+          <h2>Undone<span></span></h2>
+          <lista-todo  @emit-click="removeTask"
+           :tasks="tasks" :check=false></lista-todo>
+          <h2>Done<span></span></h2>
+          <lista-todo @emit-click="removeTask"
+          :tasks="tasks" :check=true></lista-todo>   
+        </div> 
+        {{simulateUser()}}
+      </div>
+    </template>
+
+    <!-- Lista de tarefas -->
+    <template id="lista">
+      <ul class="task"> 
+        <div v-for="(task, index) in tasks" class="list-group">
+          <div v-if="task.isChecked == check"class="list-group-item">
+            <li>
+              <input type="checkbox" v-bind:id="task.id" v-bind:value="task.isChecked" v-model="task.isChecked">
+              <label v-bind:for="task">{{task.title}}</label>
+              <button class="danger" @click.stop.prevent="emitClick(index)">X</button>
+            </li>
+          </div>
+        </div>
+      </ul>
+    </template>
+    
+    <script>
+         Vue.component('add-todo', {
+          template: '#add',
+          data() {
+            return {
+              new_task: '',
+              error: '',
+              tasks: [
+                        {
+                          id: 1,
+                          title: 'go to camp',
+                          isChecked: false,
+                        },
+                        {
+                          id: 2,
+                          title: 'ask myself why I wrote this',
+                          isChecked: true,
+                        },
+                        {
+                          id: 3,
+                          title: 'test this code',
+                          isChecked: false,
+                        },
+                        {
+                          id: 4,
+                          title: 'test this code again',
+                          isChecked: false,
+                        },
+                        {
+                          id: 5,
+                          title: 'test this code over and over again',
+                          isChecked: false,
+                        },
+                        {
+                          id: 6,
+                          title: 'test this code again',
+                          isChecked: true,
+                        },
+                        {
+                          id: 7,
+                          title: 'test this code again',
+                          isChecked: true,
+                        },
+                        {
+                          id: 8,
+                          title: 'test this code again',
+                          isChecked: true,
+                        },
+                  ],
+            }
+          },
+          methods: {
+            // create new task
+            addTask() {
+              // the user type some thing?
+              if(this.new_task.length > 0) { 
+                
+                // new id most be the last task id plus one.
+                let newId = 0;
+                if(this.tasks.length > 0) {
+                  newId = 1 + this.tasks[this.tasks.length -1].id
+                }
+
+                this.tasks.push({
+                  id: newId,
+                  title: this.new_task,
+                  isChecked: false
+                });
+
+                this.error = 'form-control';
+
+              } else {
+                this.error = 'error';
+              }
+
+              // cleaar input
+              this.new_task = ''; 
+            },
+            removeTask(index) {
+              console.log(index)
+              this.$delete(this.tasks, index)
+            },
+            // muda o estado da  tarefa de parametro id
+            updated(id) {
+              console.log(id)
+              let index = this.tasks.findIndex(pk => pk.id == id)
+              console.log(index)
+              this.tasks[index].isChecked = ! this.tasks[index].isChecked
+            },
+
+            // filtra as tarefas undone
+            filter() {
+              return this.tasks.filter(task => {
+                return task.isChecked == false
+              })
+            },
+            // returna um número aleatório menor que o tamanho de tarefas
+            random() {
+              let index = 0, undone;
+              if(!this.tasks.length)
+                return -1
+
+              undone = this.filter()
+              if(!undone.length)
+                return -1
+
+              index = Math.floor( ( (Math.random() * 10 ) * undone.length ) % undone.length)
+              return undone[index].id;
+            },
+
+            // simula o usuário clicando em uma tarefa
+            simulateUser() {
+                setInterval(() => {
+                  let id = this.random()
+                  if(id == -1) 
+                    return
+                  this.updated(id)
+                }, 60000);
+            },
+         
+          }
+        })
+        Vue.component('lista-todo', {
+          template: '#lista',
+          props: {
+            check: false,
+            tasks: Array,
+          },
+          methods: {
+            emitClick(index) {
+                this.$emit('emit-click', index);
+            } 
+          }
+      })
+
+      const app = new Vue({
+          el: "#app",
+          data: {
+      
+          },
+          methods: {
+          
+          },
+      });
+    </script>
+  </body>
+</html>

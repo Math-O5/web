@@ -1,0 +1,86 @@
+/* 
+# Nome: Mathias Fernandes 
+# n° 10734352
+# email: mathfern4@gmail.com
+# email usp: mathfernandes@usp.br
+# atividade sobre vue 
+*/
+
+  div h1, div{
+    font-family: Arial, Helvetica, sans-serif;
+    display: table;
+    text-align: left;
+    padding: 0vh 2vw 0vh 0vw;
+    margin-left: 2rem;
+  }
+
+  .list-group {
+    padding: 0;
+  }
+
+  .list-group-item {
+    padding: 0;
+  }
+
+  form {
+    display: inline-block;
+  }
+ 
+  div.form-group input {
+    width: 10%;
+    margin: 0;
+    padding: 0vh 4vw 0vh 1vw;
+  }
+  
+  div.form-group form input{
+    width: 40%;
+    margin: 0;
+    padding: 0vh 4vw 0vh 1vw;
+  }
+
+  input.error {
+    width: 50%;
+    margin: 0;
+    padding: 2vh 2vw 2vw 2vw;
+    background-color: rgb(240, 155, 155);
+  }
+
+  button {
+    background-color: royalblue;
+    border-radius: 10px;
+    padding: 1vh 2vw 1vh 2vw;
+    color: white;
+    text-align: center;
+  }
+
+  .task {
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 150px;
+    margin: 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .list-group li {
+    width: 50vw;
+    float: left;
+    border: 0.3px solid rgb(214, 213, 213);
+    list-style: none;
+    text-align: left;
+    padding: 1vh 5vw 1vh 1vw;
+  }
+  
+  .list-group li:hover {
+    background-color: rgb(214, 213, 213);;
+    border: 0.3px solid rgb(168, 168, 168);
+  }
+  
+  .danger {
+    background-color: tomato;
+    float: right;
+  }

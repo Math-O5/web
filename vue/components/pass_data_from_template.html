@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="icon" href="favicon.ico" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>TO DO</title>
+  </head>
+  <body>
+    <h2>Coisas que você já deiva ter feito.</h2>
+    <div id="app">
+        <nav-bar></nav-bar>
+    </div>
+    
+    <!-- templates  -->
+    <template id="nav">
+        <nav>
+            <list-to-do :items="lista"
+            @emit-click="getLink"
+            ></list-to-do>
+        </nav>
+    </template>
+    <template id="list">
+        <ul>
+            <li v-for="(item, index) in items">
+                <a @click.stop.prevent="emitClick(index)" href="#">{{item.label}}</a>
+            </li>
+        </ul>
+    </template>
+
+
+    <!-- vue -->
+    <script>
+        Vue.component('nav-bar', {
+            template: '#nav',
+            data() {
+                return {
+                    lista: [{label: 'Home'}, {label: 'index'}, {label: 'disable'}]
+                }
+            },
+            methods: {
+                getLink(index) {
+                    alert(this.lista[index].label)
+                }
+            },
+        })
+        Vue.component('list-to-do', {
+            template: "#list",
+            props: {
+                items: {
+                    type: Array,
+                    required: true,
+                    default: []
+                }
+            },
+            methods: {
+                emitClick(index) {
+                    this.$emit('emit-click', index);
+                } 
+            },
+        })
+
+        let app = new Vue({
+            el: "#app",
+
+            data: {
+
+            },
+        })
+    </script>
+  </body>
+</html>
