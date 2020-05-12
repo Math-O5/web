@@ -14,4 +14,4 @@
     ./main : arquivos html e css.
 
 ## demo
-<img href="./demo.png"></img>
+<img src="./demo.png"></img>
