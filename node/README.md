@@ -9,6 +9,9 @@
 ```npm init``` inicia aplicação. As informações dos pacotes estão na pasta root/packge.json.
 ```npm install``` instala as dependencias descritas nos package*.json.
 
+## Executação e compilação
+```npm start```
+
 # Modulos
 express -> Implementa o padrão MVC.
 nodemon -> reseta a aplicação a cada alteração

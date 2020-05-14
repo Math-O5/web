@@ -1,0 +1,139 @@
+<!--
+# Nome: Mathias Fernandes 
+# n° 10734352
+# email: mathfern4@gmail.com
+# email usp: mathfernandes@usp.br
+# atividade sobre vue 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+    <title>Vue.js Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="form.css">
+	</head>
+	<body>
+		<div id="app" class="container-fluid">
+      <h1>Vue.js Form</h1>
+        <form   
+          @submit="checkForm"
+          action="#"
+          method="post"
+          novalidate="true"
+          class="form-container">
+          <div class="form-row">
+            <p class="invalid_forms" v-if="errors.length">
+              <b>Por favor, corrija os seguintes erros(s):</b>
+              <ul>
+                <li v-for="error in errors">
+                  {{error}}
+                </li>
+              </ul>
+            </p>
+            <div class="form-group col-6">
+              <label for="fname">Primeiro nome</label>
+              <input type="text" :class="fistNameValidate" placeholder="Primeiro Nome" v-model="firstName">
+            </div>
+            <div class="form-group col-6">
+              <label for="fname">Sobrenome</label>
+              <input type="text" :class="familyNameValidate" placeholder="Sobrenome" v-model="familyName">
+            </div>
+            <div class="form-group col-12">
+              <label for="fname">Data de nascimento</label><span> DD/MM/AAAA ex: 28/11/1999</span>
+              <input type="text" :class="birthDateValidate" placeholder="Data de Nascmento" v-model="birthDate" invalid>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="fname">Cidade</label>
+              <input type="text" :class="cityValidate" placeholder="Cidade" v-model="city">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="fname">Signo</label>
+              <select id="state" class="form-control" v-model="selected_drop">
+                <option>Signo</option>
+                <option>Áries</option>
+                <option>Leão</option>
+                <option>...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group col-12">
+            </div>
+          </div>
+          <p>
+            <input type="submit" value="Submit">  
+          </p>
+        </form>
+    </div>
+      <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+              // the validate field choice with class will be assigned
+              errors: [],
+              firstName: null,
+              fistNameValidate: '',
+              familyName: null,
+              familyNameValidate: '',
+              birthDate: null,
+              birthDateValidate: '',
+              city: null,
+              cityValidate: '',
+              selected_drop: 'Signo',
+            },
+            methods: {
+              // Check if inputs of form are ok
+              checkForm: function (e) {
+                this.errors = [];
+                if(!this.firstName) {
+                  this.errors.push("Nome obrigatório.");
+                  this.fistNameValidate = 'input_invalid';
+                } else {
+                  this.fistNameValidate = 'input_valid';
+                }
+                
+                if(!this.familyName) {
+                  this.errors.push('Sobrenome obrigatório.');
+                  this.familyNameValidate = 'input_invalid';
+                } else {
+                  this.familyNameValidate = 'input_valid';
+                }
+
+                if (!this.city) {
+                  this.errors.push('Cidade obrigatório.');
+                  this.cityValidate = 'input_invalid';
+                } else {
+                  this.cityValidate = 'input_valid';
+                }
+
+                if (!this.birthDate) {
+                  this.errors.push('Data de nascimento obrigatório.');
+                  this.birthDateValidate = 'input_invalid'
+                } else if(!this.validDate(this.birthDate)) {
+                  this.errors.push('Data não encontrada.');
+                  this.birthDateValidate = 'input_invalid'
+                } else {
+                  this.birthDateValidate = 'input_valid'
+                }
+
+                // if there's no errors, then post form
+                if (!this.errors.length) {
+                  return true;
+                }
+
+                e.preventDefault()
+                
+              },
+
+              // validate the format of date 01/01/1000
+              validDate: function (birthDate) {
+                let re = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i;
+                return re.test(birthDate);
+              }
+            
+            },          
+        });
+      </script>
+	</body>
+</html>
