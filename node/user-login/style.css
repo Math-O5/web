@@ -91,3 +91,8 @@ input[type=submit]:hover {
     color: rgb(185, 15, 15);
 }
 
+button {
+    padding: 10px 20px;
+    background-color: #45a049;
+    color: white;
+}

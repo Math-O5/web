@@ -3,9 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login app</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
 </head>
 <body>
-    
+    <div id="app">
+        <div class="container">
+            <h1>{{ titulo }}</h1>
+            <button @click.stop.prevent="getUsers()">Exibir users</button>
+            <button @click.stop.prevent="postUsers()">New users</button>
+            <div v-if="response.status == 'error'">
+                {{ response.msg }}
+            </div>
+            
+            <!-- spin -->
+            <div v-if="loader.users">
+                ...loading...
+            </div>
+            <ul>
+                <li v-for="user in users">
+                    {{user.username}}
+                </li>
+            </ul>
+        </div>
+    </div>
+        <script>
+            let mixin = {
+                methods: {
+                    getUsers() {
+                        this.loader.users = true;
+                        let url = 'http://localhost:3001/users/';
+                        this.$http
+                            .get(url, {
+                                headers: {
+                                'Content-Type': 'application/json'
+                            }})
+                            .then(res => {
+                                console.log(res);
+                                this.users = res.body.data;
+                                console.log("test: ", this.users);
+                            }, error => {
+                                this.response.status = "error";
+                                console.log(error);
+                            })
+                            .finally(_ => {
+                                this.loader.users = false;
+                            });
+                    },
+                    postUsers() {
+                        this.loader.users = true;
+                        let url = 'http://localhost:3001/users/';
+                        this.$http
+                            .post(url, {
+                                "username": "joao2",
+                                "password": "cajuecastanhaehbom",
+                                "email": "eutbm",
+                                "permissions" : ["r"]
+                            })
+                            .then(res => {
+                                console.log(res);
+                                this.users = res.body.data;
+                                console.log("test: ", this.users);
+                            }, error => {
+                                this.response.status = "error";
+                                console.log(error);
+                            })
+                            .finally(_ => {
+                                this.loader.users = false;
+                            });
+                    }
+                }
+            }
+
+        let app = new Vue({
+            el: '#app',
+            mixins: [mixin],
+            data: {
+                titulo: "Vuejs do jeiot ninja!",
+                users: [],
+                loader: {
+                    users: false,
+                },
+                response: {
+                    msg: "Erro ao buscar",
+                    status: ""
+                }
+            }
+        }); 
+    </script>
 </body>
 </html>

@@ -1,103 +1,104 @@
 'use strict'
 
 const mongoose = require('mongoose');
-const Product = mongoose.model('Product');
+const User = mongoose.model('User');
 
 exports.get = (req, res, next) => {
-    Product
-        .find({active: true}, 'id title slug price') //all
+    User
+        .find({active: true}, 'id username permissions') //all
         .then(data => {
             res.status(200).send({data});
         }).catch(e =>  {
             res.status(400).send({
-                message: 'Falha ao buscas produtos',
+                message: 'Falha ao buscar user',
                 data: e
             });
         });
 }
 
 exports.getById = (req, res, next) => {
-    Product
+    User
         .findById(req.params.id) 
         .then(data => {
             res.status(200).send({data});
         }).catch(e =>  {
             res.status(400).send({
-                message: 'Falha ao buscas produtos',
+                message: 'Falha ao buscar user',
                 data: e
             });
         });
 }
 
-exports.getBySlug = (req, res, next) => {
-    Product
+exports.getByUsername = (req, res, next) => {
+    User
         .findOne({
-            slug: req.params.slug,
+            username: req.params.username,
             active: true
-        }, 'title description slug price') //all
+        }, 'id username permissions') 
         .then(data => {
             res.status(200).send({data});
         }).catch(e =>  {
             res.status(400).send({
-                message: 'Falha ao buscas produtos',
+                message: 'Falha ao buscar user',
                 data: e
             });
         });
 }
 
-exports.getBySTag = (req, res, next) => {
-    Product
+exports.getBySPermissions = (req, res, next) => {
+    User
         .find({
-            tags: req.params.tag,
+            permissions: req.params.permissions,
             active: true
-        }, 'title description slug price tags') //all
+        }, 'id username permissions') 
         .then(data => {
             res.status(200).send({data});
         }).catch(e =>  {
             res.status(400).send({
-                message: 'Falha ao buscas produtos',
+                message: 'Falha ao buscar user',
                 data: e
             });
         });
 }
 
 exports.post = (req, res, next) => {
-    let prod = new Product(req.body);
+    let user = new User(req.body);
 
-    prod.save()
+    user.save()
         .then(_ => {
             res.status(201).send({
-                message: 'Product cadastrado com sucesso!'
+                message: 'User cadastrado com sucesso!'
             });
         }).catch(e =>  {
             res.status(400).send({
-                message: 'Falha ao cadastrar produto',
+                message: 'Falha ao cadastrar-se',
                 data: e
             });
         });
 };
 
-exports.put = (req, res, next) => {
-    Product.findByIdAndUpdate(req.params.id, {
-        $set: {
-            title: req.body.title,
-            description: req.body.description,
-            price: req.body.price
-        }
-    }).then(x => {
-        res.status(200).send({
-            message: 'Atualizado.'
-        });
-    }).catch(e => {
-        res.status(400).send({
-            message: 'Falha ao atualizar.',
-            data: e
-        });
-    });
-};
+// update user
+// exports.put = (req, res, next) => {
+//     User.findByIdAndUpdate(req.params.id, {
+//         $set: {
+//             title: req.body.title,
+//             description: req.body.description,
+//             price: req.body.price
+//         }
+//     }).then(x => {
+//         res.status(200).send({
+//             message: 'Atualizado.'
+//         });
+//     }).catch(e => {
+//         res.status(400).send({
+//             message: 'Falha ao atualizar.',
+//             data: e
+//         });
+//     });
+// };
 
 exports.delete = (req, res, next) => {
-    Product.findOneAndRemove(req.params.id)
+    User.findOneAndRemove(req.params.id)
             .then(x => {
                 res.status(200).send({
                     message: 'Atualizado.'
