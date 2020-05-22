@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const db = require('../config').mongoURI;
 
 const app = express();
 const router = express.Router();
@@ -10,7 +11,9 @@ const router = express.Router();
 
 
 //connect com o banco
-mongoose.connect('mongodb+srv://xjamaicax:jamaicajamaica@cluster0-lcyw1.mongodb.net/test',  {
+// db is the URL do banco
+// cadastre uma conta no Mongo db Atlas para testar.
+mongoose.connect(db,  {
     useNewUrlParser: true,
     useUnifiedTopology: true
     });

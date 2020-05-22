@@ -58,22 +58,6 @@ exports.getByUsername = (req, res, next) => {
         });
 }
 
-exports.getBySPermissions = (req, res, next) => {
-    User
-        .find({
-            permissions: req.params.permissions,
-            active: true
-        }, 'id username permissions') 
-        .then(data => {
-            res.status(200).send({data});
-        }).catch(e =>  {
-            res.status(400).send({
-                message: 'Falha ao buscar user',
-                data: e
-            });
-        });
-}
-
 /**
  * @route POST http://localhost:3001/users/newUser/register
  * @obj Register user
@@ -105,8 +89,6 @@ exports.register = (req, res, next) => {
         return res.status(400).json({
             message: contract.firstError().message,
         })
-        // res.status(400).send(contract.errors()).end()
-        // return;
     }
 
     User.
@@ -133,20 +115,20 @@ exports.register = (req, res, next) => {
     // hash passport
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if(err)
-                    throw err;
-                newUser.password = hash;
-                newUser.save()
-                    .then(_ => {
-                        res.status(201).send({
-                            message: 'User cadastrado com sucesso!'
-                        });
-                    }).catch(e =>  {
-                        return res.status(400).send({
-                            message: 'Falha ao cadastrar-se',
-                            data: e
-                        });
+            if(err)
+                throw err;
+            newUser.password = hash;
+            newUser.save()
+                .then(_ => {
+                    res.status(201).send({
+                        message: 'User cadastrado com sucesso!'
                     });
+                }).catch(e =>  {
+                    return res.status(400).send({
+                        message: 'Falha ao cadastrar-se',
+                        data: e
+                    });
+                });
             });
         });
 
@@ -170,6 +152,7 @@ exports.login = (req, res, next) => {
             bcrypt.compare(req.body.password, user.password) // compare passwords
                   .then(isMatch => {
                       if(isMatch) {
+                          
                         // return token
                         let data = {
                             username: user.username,

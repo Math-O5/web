@@ -15,3 +15,4 @@
 # Modulos
 express -> Implementa o padrão MVC.
 nodemon -> reseta a aplicação a cada alteração
+mongoose -> database
