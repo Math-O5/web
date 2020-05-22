@@ -12,11 +12,11 @@
 
 }
 
-/* Forms */
-.form-container {
-    border-radius: 5px;
-    background-color: #e3eff8;
-    padding: 20px;
+#app {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    text-align: center;
 }
 
 select {
@@ -27,27 +27,6 @@ select {
 
 label {
     font-weight: bold;
-}
-
-/* cols */
-.col-6 {
-    width: 48.33333333%;
-    display: inline-block;
-}
-
-.col-12 {
-    width: 97.33333333%;
-}
-
-.col-md-6 {
-    width: 49.88888888%;
-    display: inline-block;
-}
-
-.col-md-4 {
-    width: 33.22222222%;
-    justify-content: left;
-    display: inline-block;
 }
 
 /* inputs */
@@ -61,12 +40,21 @@ input[type=text], select {
     box-sizing: border-box;
 }
 
+input[type=password], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 input[type=submit] {
 width: 100%;
 background-color: rgb(15, 136, 15);
 color: rgb(255, 255, 255);
 padding: 14px 20px;
-margin: 8px 0;
 border: none;
 border-radius: 4px;
 cursor: pointer;
@@ -95,4 +83,24 @@ button {
     padding: 10px 20px;
     background-color: #45a049;
     color: white;
+}
+
+a {
+    margin: 10px 0 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(180, 27, 27);
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+span {
+    margin: 20px 0 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(241, 139, 139);
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
 }

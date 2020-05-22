@@ -13,7 +13,6 @@ const port = choicePort(process.env.PORT || '3001');
 app.set('port', port);
 /********************************************************/
 
-
 /********************************************************/
 // Criar servidor
 const server = http.createServer(app);

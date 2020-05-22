@@ -5,91 +5,197 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login app</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/vue"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+
 </head>
 <body>
     <div id="app">
         <div class="container">
-            <h1>{{ titulo }}</h1>
-            <button @click.stop.prevent="getUsers()">Exibir users</button>
-            <button @click.stop.prevent="postUsers()">New users</button>
-            <div v-if="response.status == 'error'">
-                {{ response.msg }}
-            </div>
-            
-            <!-- spin -->
-            <div v-if="loader.users">
-                ...loading...
-            </div>
-            <ul>
-                <li v-for="user in users">
-                    {{user.username}}
-                </li>
-            </ul>
+            <h1>{{titulo}}</h1>
+            <router-link :to="{ name: 'home' }">Home</router-link>
+            <router-link :to="{ name: 'singup' }">Singup</router-link>
+            <router-link :to="{ name: 'singin' }">Singin</router-link>
+            <router-view></router-view>
         </div>
-    </div>
-        <script>
-            let mixin = {
-                methods: {
-                    getUsers() {
-                        this.loader.users = true;
-                        let url = 'http://localhost:3001/users/';
-                        this.$http
-                            .get(url, {
-                                headers: {
-                                'Content-Type': 'application/json'
-                            }})
-                            .then(res => {
-                                console.log(res);
-                                this.users = res.body.data;
-                                console.log("test: ", this.users);
-                            }, error => {
-                                this.response.status = "error";
-                                console.log(error);
-                            })
-                            .finally(_ => {
-                                this.loader.users = false;
-                            });
-                    },
-                    postUsers() {
-                        this.loader.users = true;
-                        let url = 'http://localhost:3001/users/';
-                        this.$http
-                            .post(url, {
-                                "username": "joao2",
-                                "password": "cajuecastanhaehbom",
-                                "email": "eutbm",
-                                "permissions" : ["r"]
-                            })
-                            .then(res => {
-                                console.log(res);
-                                this.users = res.body.data;
-                                console.log("test: ", this.users);
-                            }, error => {
-                                this.response.status = "error";
-                                console.log(error);
-                            })
-                            .finally(_ => {
-                                this.loader.users = false;
-                            });
+    </div>    
+    <template id="singup">
+        <div>
+            <h2>Junte-se conosco!</h2>
+            <div v-if="sucess === false">
+                <span>
+                    {{response.msg}}
+                </span>
+            </div>
+            <form v-on:submit="registerUser">
+                <input type="text" name="email" placeholder='email' v-model="email"/><br>
+                <input type="text" name="username" placeholder='username'v-model="username"/><br>
+                <input type="password" name="password" placeholder='password' v-model="password"/><br>
+                <input type="password" name="confirm_password" placeholder='confirme password' v-model="confirm_password"/><br>       
+                <input type="submit" value="Criar" />    
+            </form> 
+        </div>
+    </template>
+    
+    <template id="singin">
+        <div>
+            <h2>Acesse sua conta</h2>
+            <div v-if="sucess === false">
+                <span>
+                    {{response.msg}}
+                </span>
+            </div>
+            <form v-on:submit="login">
+                <input type="text" name="username" placeholder='username' v-model="username"/><br>
+                <input type="password" name="password" placeholder='password' v-model="password"/><br>    
+                <input type="submit" value="Entrar" />    
+            </form>
+        </div>
+    </template>
+
+    <template id="perfil">
+        <p> 
+            Olá <strong>{{ $route.params.username }}</strong>. Isso é tudo.
+        </p>
+    </template>
+
+    <template id="home">
+        <p> 
+            Bem vindo
+        </p>
+    </template>
+
+    <template id="error404">
+        <p> 
+            Página nõ encontrada
+        </p>
+    </template>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        let registerMixin = {
+            data() {
+                return {
+                    username: '',
+                    password: '',
+                    confirm_password: '',
+                    email: '',
+                    permissions: [],
+                    sucess: undefined,
+                    response: {
+                        msg: '',
                     }
                 }
+            },
+            methods: {
+                registerUser() {
+                    event.preventDefault();
+                    
+                    let url = 'http://localhost:3001/users/newUser/register';
+                    axios
+                        .post(url, {
+                            "username": this.username,
+                            "password": this.password,
+                            "confirm_password": this.confirm_password,
+                            "email": this.email,
+                            "permissions" : ['r'],
+                        })
+                        .then(response => {
+                            // console.log(response);
+                            this.sucess = true;
+                            this.$router.push({name: 'singin'});
+
+                        }, error => {
+                            this.response.msg = error.response.data.message;
+                            this.sucess = false;
+                        })
+                }
             }
+        }
+
+        let loginMixin = {
+            data() {
+                return {
+                    password: '',
+                    username: '',
+                    sucess: undefined,
+                    response: {
+                        msg: '',
+                    }
+
+                }
+            },
+            methods: {
+                login() {
+                    event.preventDefault();
+                    let url = 'http://localhost:3001/users/login';
+                    axios
+                        .post(url, {
+                            "username": this.username,
+                            "password": this.password,
+                        })
+                        .then(response => {
+                            this.sucess = true;
+                            this.$router.push({name: 'perfil', params: { username: this.username } });
+
+                        }, error => {
+                            this.response.msg = error.response.data.message;
+                            this.sucess = false;
+                        })
+                },
+            }
+        }
+
+        const Singin = Vue.component('sing-in', {
+            template: '#singin',
+            mixins: [loginMixin],
+        });
+
+        const Singup = Vue.component('sing-up', {
+            template: '#singup',
+            mixins: [registerMixin]
+
+        });
+
+        const Perfil = Vue.component('perfil', {
+            template: '#perfil',
+            methods: {
+
+            }
+        });
+
+        const Home = Vue.component('home', {
+            template: '#home',
+        });
+
+        const ErrorNotFound = Vue.component('error404', {
+            template: '#error404',
+        });
+
+        let router = new VueRouter({
+            mode: 'history',
+                routes: [
+                {
+                    path: '/node/user-login', name: 'home', component: Home 
+                },
+                {
+                    path: '/singin', name: 'singin', component: Singin, 
+                },
+                {
+                    path: '/singup', name: 'singup', component: Singup 
+                },
+                {      
+                    path: '/perfil/:username', name: 'perfil', component: Perfil
+                },
+                { path: '*', redirect: '/node/user-login' }
+            ]
+        });
 
         let app = new Vue({
             el: '#app',
-            mixins: [mixin],
+            router, 
             data: {
-                titulo: "Vuejs do jeiot ninja!",
-                users: [],
-                loader: {
-                    users: false,
-                },
-                response: {
-                    msg: "Erro ao buscar",
-                    status: ""
-                }
+                titulo: "Autenticação!",
             }
         }); 
     </script>
