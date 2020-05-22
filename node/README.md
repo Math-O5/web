@@ -1,8 +1,8 @@
 # Desafios e Exercicios sobre Node
 
 <ul>
-    <li>basic_examples</li> tutoriais e exemplos simples de conceitos do Node. 
-    <li>Exercicios 1</li> faça...
+    <li><strong>basic_examples</strong> tutoriais e exemplos simples de conceitos do Node. </li> 
+    <li><strong>Exercicio: User- Login </strong>  implementar um sistema de autenticação usando Vue e Nodejs</li>  
 </ul>
 
 # Instação dos pacotes

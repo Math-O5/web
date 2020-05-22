@@ -11,17 +11,18 @@ Default user:
         username: 123345
         password: 123456789
 
+```
 / api
-   | -> bin : simple server node js
-   | -> / src
-             |  -> controllers : All methods of applcation.
-             |  -> models      : Table User
-             |  -> routes      : All path of aplication.
-             |  -> validators  : validates before salve in database.
-             |  config.js : conection with database (URL)
+| - | -> bin : simple server node js
+| - | -> / src
+|     -      |  -> controllers : All methods of applcation.
+|     -      |  -> models      : Table User
+|     -      |  -> routes      : All path of aplication.
+|     -      |  -> validators  : validates before salve in database.
+|     -      |  config.js : conection with database (URL)
 / index.html : frontend of all aplication  
-
-<img href="img/login.png"></img>
+```
+<img src="img/login.png"></img>
 
 ## Questões 
 1. What is the Event Loop and how is it used by Node.js?
@@ -36,5 +37,5 @@ Default user:
 3. Implemetantion of user-login application using node.js.
 
 ### Sources: 
-http://code.google.com/apis/v8/intro.html
+http://code.google.com/apis/v8/intro.html</br>
 https://nodejs.dev/the-nodejs-event-loop
