@@ -22,6 +22,10 @@ const schema = new Schema({
         index: true,
         unique: true,
     },
+    address: {
+        type: String,
+        required: false,
+    },
     active: {
         type: Boolean, 
         required: true,

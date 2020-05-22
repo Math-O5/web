@@ -26,8 +26,9 @@
                 </span>
             </div>
             <form v-on:submit="registerUser">
-                <input type="text" name="email" placeholder='email' v-model="email"/><br>
                 <input type="text" name="username" placeholder='username'v-model="username"/><br>
+                <input type="text" name="email" placeholder='email' v-model="email"/><br>
+                <input type="text" name="address" placeholder='address'v-model="address"/><br>
                 <input type="password" name="password" placeholder='password' v-model="password"/><br>
                 <input type="password" name="confirm_password" placeholder='confirme password' v-model="confirm_password"/><br>       
                 <input type="submit" value="Criar" />    
@@ -52,15 +53,34 @@
     </template>
 
     <template id="perfil">
-        <p> 
-            Olá <strong>{{ $route.params.username }}</strong>. Isso é tudo.
-        </p>
+        <div>
+            <div v-if="sucess === true">
+                <p>
+                    <strong>id: </strong> {{ id }}
+                </p>
+                <p>
+                    Olá <strong>{{ username }}</strong>. Isso é tudo.
+                </p>
+                <p>
+                    <strong>email: </strong> {{ email }}
+                </p>
+                <p>
+                    <strong>address: </strong> {{ address }}
+                </p>
+                <button @click="deleteUser">Excluir conta</button>
+            </div>
+            <div v-if="sucess === false">
+                <p v-if="sucess === false">
+                    <span>{{response.msg}}</span>
+                </p>
+            </div>
+        </div>
     </template>
 
     <template id="home">
-        <p> 
+        <h1> 
             Bem vindo
-        </p>
+        </h1>
     </template>
 
     <template id="error404">
@@ -79,6 +99,7 @@
                     username: '',
                     password: '',
                     confirm_password: '',
+                    address: '',
                     email: '',
                     permissions: [],
                     sucess: undefined,
@@ -98,14 +119,15 @@
                             "password": this.password,
                             "confirm_password": this.confirm_password,
                             "email": this.email,
+                            "address": this.address,
                             "permissions" : ['r'],
                         })
                         .then(response => {
-                            // console.log(response);
                             this.sucess = true;
                             this.$router.push({name: 'singin'});
 
                         }, error => {
+                            console.log(error.response.data);
                             this.response.msg = error.response.data.message;
                             this.sucess = false;
                         })
@@ -122,7 +144,6 @@
                     response: {
                         msg: '',
                     }
-
                 }
             },
             methods: {
@@ -159,8 +180,59 @@
 
         const Perfil = Vue.component('perfil', {
             template: '#perfil',
+            created() {
+                this.getInfo(this.$route.params.username);
+            },
+            data() {
+                return {
+                    id: '',
+                    username: '',
+                    password: '',
+                    email: '',
+                    address: '',
+                    sucess: undefined,
+                    response: {
+                        msg: '',
+                    }
+                }
+            },
             methods: {
+                getInfo(username) {
+                    let url = `http://localhost:3001/users/${username}`;
+                    axios
+                        .get(url)
+                        .then(response => {
+                            console.log(response);
+                            this.sucess = true;
+                            this.id = response.data.data._id;
+                            this.username = response.data.data.username;
+                            this.email = response.data.data.email;
+                            this.address = response.data.data.address;
+                        }, error => {
+                            this.response.msg = error.response.data.message;
+                            this.sucess = false;
+                        });
+                },
 
+                // deleta um usuarios
+                deleteUser() {
+                    event.preventDefault();
+                    let url = `http://localhost:3001/users/delete/${this.id}`; // busca pelo id
+                    axios
+                        .delete(url)
+                        .then(response => {
+                            console.log(response);
+                            this.sucess = false;
+                            this.response.msg = response.data.message;
+                            // tempo para o usuário let a mensagem que foi excluido
+                            setTimeout(() => {
+                                this.$router.push({name: 'singin'});
+                            }, 2000);
+                        }, error => {
+                            console.log(error)
+                            this.sucess = true;
+                        });
+                }
             }
         });
 
@@ -176,7 +248,7 @@
             mode: 'history',
                 routes: [
                 {
-                    path: '/node/user-login', name: 'home', component: Home 
+                    path: '/user-login', name: 'home', component: Home 
                 },
                 {
                     path: '/singin', name: 'singin', component: Singin, 
@@ -187,7 +259,9 @@
                 {      
                     path: '/perfil/:username', name: 'perfil', component: Perfil
                 },
-                { path: '*', redirect: '/node/user-login' }
+                {
+                    path: '*', name: 'error', component: ErrorNotFound
+                }
             ]
         });
 

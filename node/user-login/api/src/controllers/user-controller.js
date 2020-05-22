@@ -3,6 +3,8 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const bcrypt = require('bcryptjs');
+const ValidationContract = require('../validators/validators');
+mongoose.set('useFindAndModify', false);
 
 /**
  * @obj debug functions
@@ -33,14 +35,21 @@ exports.getById = (req, res, next) => {
         });
 }
 
+/**
+ * @route GET http://localhost:3001/users/perfil/:username
+ * @obj Get info user
+ * @acess private
+ */
 exports.getByUsername = (req, res, next) => {
     User
         .findOne({
             username: req.params.username,
             active: true
-        }, 'id username permissions') 
+        }, 'id username email address') 
         .then(data => {
-            res.status(200).send({data});
+            return res.status(200).json({
+                data: data
+            });
         }).catch(e =>  {
             res.status(400).send({
                 message: 'Falha ao buscar user',
@@ -76,18 +85,28 @@ exports.register = (req, res, next) => {
         email, 
         password,
         confirm_password,
+        address,
         permissions,
     } = req.body;
 
-    if(password !== confirm_password)
-        return res.status(400).json({
-            message: 'Senhas diferentes'
-        });
+    let contract = new ValidationContract();
 
-    if(password.length < 6) {
+    contract.isEmail(email, 'O email não é válido');
+    contract.hasMaxLen(username, 9, 'O username ultrapassou o limite de 9 caractes.');
+    contract.hasMinLen(username, 5, 'O username não tem menos de 5 caracteres.');
+    contract.isLowerCase(username, 'O username não pode conter letras maiusculas.');
+    contract.hasMinLen(address, 10, 'O endereço não contém informações suficientes.');
+    contract.hasMinLen(password, 9, 'Senha muito curta');
+    contract.hasSpace(password, 'Espaço não é permitida na senha.');
+    contract.isEqual(password, confirm_password, 'Senhas diferentes.');
+
+    // If one fail, return error 400 and message
+    if(!contract.isValid()) {
         return res.status(400).json({
-            message: 'Senha fraca.'
+            message: contract.firstError().message,
         })
+        // res.status(400).send(contract.errors()).end()
+        // return;
     }
 
     User.
@@ -109,7 +128,7 @@ exports.register = (req, res, next) => {
         });
 
     
-    let newUser = new User({username, email, password, permissions});
+    let newUser = new User({username, password, email, address, permissions});
 
     // hash passport
     bcrypt.genSalt(10, (err, salt) => {
@@ -142,7 +161,7 @@ exports.login = (req, res, next) => {
         .then(user => {
             if(!user) {
                 return res.status(400).json({
-                    message: 'Usuário não encontradoa.',
+                    message: 'Usuário não encontrado.',
                     sucess: false,
                     data: req.body,
                 });
@@ -177,9 +196,22 @@ exports.login = (req, res, next) => {
         });
 }
 
-// /**
-//  * @route GET 
-//  * @return user data
-//  * @acess private
-//  */
-// exports.getProfile = (req, res, next) => {
+/**
+ * @route DELETE http://localhost:3001/users/delete/:id
+ * @obj Delete user
+ * @acess private
+ */
+exports.delete = (req, res, next) => {
+    User
+            .findOneAndDelete(req.params.id)
+            .then(x => {
+                res.status(200).send({
+                    message: 'Deletado.'
+                });
+            }).catch(e => {
+                res.status(400).send({
+                    message: 'Falha ao deletar.',
+                    data: e
+                });
+            });
+};
