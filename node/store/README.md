@@ -1,6 +1,9 @@
 ## Start
 ```npm install``` and ```npm start```
 
+## Instação dos pacotes
+Pelo prompt abra a pasta api e digite ```npm install``` para instalar as dependencias descritas nos package*.json. Optionally, run nodemon with ```nodemon .api/bin/server.js```.
+ 
 ### Using http tool
 ADD -> send POST with JSON:
 ```

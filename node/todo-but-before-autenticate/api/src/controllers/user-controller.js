@@ -112,7 +112,7 @@ exports.register = (req, res, next) => {
     
     let newUser = new User({username, password, email, address, permissions});
 
-    // hash passport (crypt the password)
+    // hash passport
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
             if(err)

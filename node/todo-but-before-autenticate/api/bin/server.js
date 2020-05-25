@@ -1,5 +1,4 @@
 // source: https://www.w3schools.com/nodejs/nodejs_get_started.asp
-// source: https://www.youtube.com/watch?v=Sk8oVqV0XEU&list=PLHlHvK2lnJndvvycjBqQAbgEDqXxKLoqn&index=26&t=0s
 'use strict'
 
 console.log("Iniciando Servidor ...");
@@ -10,7 +9,7 @@ const debug = require('debug')('nodestr:server');
 
 /********************************************************/
 // Instancias
-const port = choicePort(process.env.PORT || '3000');
+const port = choicePort(process.env.PORT || '3001');
 app.set('port', port);
 /********************************************************/
 

@@ -1,6 +1,6 @@
 # Instação dos pacotes
-Pelo prompt abra a pasta api e digite ```npm install``` para instalar as dependencias descritas nos package*.json. Optionally, run nodemon with ```nodemon .api/bin/server.js```.
- 
+Pelo prompt abra a pasta api e digite ```npm install``` para instalar as dependencias descritas nos package*.json.
+
 ## Executação e compilação
 Pelo prompt abra a pasta api e digite  ```npm start``` para compilar e executar o servidor.
 

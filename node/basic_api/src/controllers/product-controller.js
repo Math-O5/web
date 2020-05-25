@@ -2,111 +2,83 @@
 
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
+const repo = require('../repository/product-reposiry');
 
-exports.get = (req, res, next) => {
-    Product
-        .find({active: true}, 'id title slug price') //all
-        .then(data => {
-            res.status(200).send({data});
-        }).catch(e =>  {
-            res.status(400).send({
-                message: 'Falha ao buscas produtos',
-                data: e
-            });
+exports.get = async(req, res, next) => {
+    try {
+        let data = await repo.get()
+        res.status(200).send({data});
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao busca produtos',
         });
+    }
 }
 
-exports.getById = (req, res, next) => {
-    Product
-        .findById(req.params.id) 
-        .then(data => {
-            res.status(200).send({data});
-        }).catch(e =>  {
-            res.status(400).send({
-                message: 'Falha ao buscas produtos',
-                data: e
-            });
+exports.getById = async(req, res, next) => {
+    try {
+        let data = await repo.getById(req.params.id) 
+        res.status(200).send({data});
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao buscar produto',
         });
+    }       
 }
 
-exports.getBySlug = (req, res, next) => {
-    Product
-        .findOne({
-            slug: req.params.slug,
-            active: true
-        }, 'title description slug price') //all
-        .then(data => {
-            res.status(200).send({data});
-        }).catch(e =>  {
-            res.status(400).send({
-                message: 'Falha ao buscas produtos',
-                data: e
-            });
+exports.getBySlug = async(req, res, next) => {
+    try {
+        let data = await repo.getBySlug(req.params.slug)
+        res.status(200).send({data});
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao buscas produtos',
         });
+    }
 }
 
-exports.getBySTag = (req, res, next) => {
-    Product
-        .find({
-            tags: req.params.tag,
-            active: true
-        }, 'title description slug price tags') //all
-        .then(data => {
-            res.status(200).send({data});
-        }).catch(e =>  {
-            res.status(400).send({
-                message: 'Falha ao buscas produtos',
-                data: e
-            });
+exports.getBySTag = async(req, res, next) => {
+    try {
+        let data = await repo.getBySTag()
+        res.status(200).send({data});
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao buscas produtos',
         });
+    }
 }
 
-exports.post = (req, res, next) => {
-    let prod = new Product(req.body);
-
-    prod.save()
-        .then(_ => {
-            res.status(201).send({
-                message: 'Product cadastrado com sucesso!'
-            });
-        }).catch(e =>  {
-            res.status(400).send({
-                message: 'Falha ao cadastrar produto',
-                data: e
-            });
+exports.post = async(req, res, next) => {
+    try {
+        let data = await repo.create(req.body)
+        res.status(201).send({
+            message: 'Product cadastrado com sucesso!'
         });
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao cadastrar produto',
+        });
+    }
 };
 
-exports.put = (req, res, next) => {
-    Product.findByIdAndUpdate(req.params.id, {
-        $set: {
-            title: req.body.title,
-            description: req.body.description,
-            price: req.body.price
-        }
-    }).then(x => {
-        res.status(200).send({
-            message: 'Atualizado.'
+exports.put = async(req, res, next) => {
+    try {
+        let data = await repo.update(req.params.id, req.params.body)
+        res.status(200).send({data});
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao cadastrar produto',
         });
-    }).catch(e => {
-        res.status(400).send({
+    }
+};
+
+exports.delete = async(req, res, next) => {
+    try {
+        let data = await repo.delete(req.params.id) 
+        res.status(200).send({data});
+    } catch (e) {
+        res.status(500).send({
             message: 'Falha ao atualizar.',
-            data: e
         });
-    });
-};
-
-exports.delete = (req, res, next) => {
-    Product.findOneAndRemove(req.params.id)
-            .then(x => {
-                res.status(200).send({
-                    message: 'Atualizado.'
-                });
-            }).catch(e => {
-                res.status(400).send({
-                    message: 'Falha ao atualizar.',
-                    data: e
-                });
-            });
-            res.status(200).send(req.body);
+    }
 };

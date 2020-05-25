@@ -3,6 +3,7 @@
 <ul>
     <li><strong>basic_examples</strong> tutoriais e exemplos simples de conceitos do Node. </li> 
     <li><strong>Exercicio: User- Login </strong>  implementar um sistema de autenticação usando Vue e Nodejs</li>  
+    <li><strong>Exercicio: Store key values </strong>  implementar que salva e armazena a estrutura key-values Nodejs. A estrutura permite adicionar unique keys, editar as chaves, busca-las e remove-las</li>  
 </ul>
 
 # Instação dos pacotes

@@ -16,18 +16,25 @@ const router = express.Router();
 mongoose.connect(db,  {
     useNewUrlParser: true,
     useUnifiedTopology: true
-    });
+});
 
+// models
 const Product = require('./models/product');
+const Client = require('./models/client');
+const order = require('./models/order');
 
+// routes
 const routesApp = require('./routes/index');
 const routesProduct = require('./routes/products');
-
+const routesClients = require('./routes/clients');
+const routesOrders = require('./routes/orders');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 
 // carregar rotas
 app.use('/', routesApp);
 app.use('/products', routesProduct);
+app.use('/clients', routesClients);
+app.use('/orders', routesOrders);
 
 module.exports = app;
