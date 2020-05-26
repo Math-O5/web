@@ -1,0 +1,39 @@
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/bar-chart" class="nav-link">Bar chart</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/doughnut-chart" class="nav-link">Doughnut chart</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/radar-chart" class="nav-link">Radar chart</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/pie-chart" class="nav-link">Pie chart</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/horizontal-bar-chart" class="nav-link">Horizontal bar chart</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/linea-chart" class="nav-link">Linea chart</a>
+    </li>
+  </ul>
+  <div>
+    <router-outlet></router-outlet>
+    <div class="row">
+      <div class="col-6">
+        <app-my-linea-chart></app-my-linea-chart>
+        <app-my-bar-chart></app-my-bar-chart>
+        <app-my-pie-chart></app-my-pie-chart>
+        <app-my-horizontal-bar-chart></app-my-horizontal-bar-chart>
+      </div>
+      <div class="col-6">
+        <app-my-doughnut-chart></app-my-doughnut-chart>
+        <app-my-pie-chart></app-my-pie-chart>
+        <app-my-linea-chart></app-my-linea-chart>
+        <app-my-bar-chart></app-my-bar-chart>
+      </div>
+    </div>
+  </div>
+</div>
