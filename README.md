@@ -4,13 +4,14 @@
   <li><a href="js/basic_introdution/"> Tutorial JS (js)</a></li>
   <li><a href="node/user-login/">User login autenticate (nodejs)</a></li>
   <li><a href="vue/todo_list/">Todo List (vue)</a></li>
-  <li><a href="js/challenge_2_calculadora/">Calculadora (JS)<a/></li>
+  <li><a href="js/challenge_2_calculadora/">Calculadora (js)</a></li>
   <li><a href="html_css/profile_2">Profiles (html/css)</a></li>
   <li><a href="vue/exercicio">Forms (vue)</a></li>
   <li><a href="vue/exercicio">Search (vue)</a></li>
   <li><a href="node/store/">Store key-value (nodejs)</a></li>
   <li><a href="angular/heroes-list/angular-tour-of-heroes/">Serviços com Angular(Angular)</a></li>  
   <li><a href="django/api_pontos_turisticos/">API REST (django e django REST)</a></li>
+  <li><a href="angular/ngchart">Gráficos com Chart.js (ng2-chart - Angular)</a></li>  
 </ul>
 
 ## Some projects
