@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const bcrypt = require('bcryptjs');
 const ValidationContract = require('../validators/validators');
-mongoose.set('useFindAndModify', false);
+mongoose.set('useFindAndModify', true);
 
 /**
  * @obj debug functions

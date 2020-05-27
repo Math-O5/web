@@ -10,7 +10,7 @@ Questões e explicação das pastas em  README.md -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login app</title>
+    <title>Key-Store App</title>
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -18,14 +18,24 @@ Questões e explicação das pastas em  README.md -->
     <div id="app">
         <div class="container">
             <h1>{{titulo}}</h1>
+            <router-view></router-view>
+        </div>
+    </div>
+
+    <!-- Menu Bar -->
+    <template id="nave">
+        <div>
             <router-link :to="{ name: 'home' }">Home</router-link>
             <router-link :to="{ name: 'singup' }">Singup</router-link>
             <router-link :to="{ name: 'singin' }">Singin</router-link>
-            <router-view></router-view>
         </div>
-    </div>    
+    </template>
+    <!-- ------ -->
+
+    <!-- Registration Section -->
     <template id="singup">
         <div>
+            <nave-component></nave-component>
             <h2>Junte-se conosco!</h2>
             <div v-if="sucess === false">
                 <span>
@@ -42,9 +52,12 @@ Questões e explicação das pastas em  README.md -->
             </form> 
         </div>
     </template>
-    
+    <!-- ------ -->
+
+    <!-- Login Section -->
     <template id="singin">
         <div>
+            <nave-component></nave-component>
             <h2>Acesse sua conta</h2>
             <div v-if="sucess === false">
                 <span>
@@ -52,29 +65,42 @@ Questões e explicação das pastas em  README.md -->
                 </span>
             </div>
             <form v-on:submit="login">
-                <input type="text" name="username" placeholder='username' v-model="username"/><br>
+                <input type="text" name="email" placeholder='email' v-model="email"/><br>
                 <input type="password" name="password" placeholder='password' v-model="password"/><br>    
                 <input type="submit" value="Entrar" />    
             </form>
         </div>
     </template>
+    <!-- ------ -->
 
+    <!-- Perfil Section -->
     <template id="perfil">
         <div>
+            <nave-component></nave-component>
             <div v-if="sucess === true">
-                <p>
-                    <strong>id: </strong> {{ id }}
-                </p>
-                <p>
-                    Olá <strong>{{ username }}</strong>. Isso é tudo.
-                </p>
-                <p>
-                    <strong>email: </strong> {{ email }}
-                </p>
-                <p>
-                    <strong>address: </strong> {{ address }}
-                </p>
-                <button @click="deleteUser">Excluir conta</button>
+                <p><strong>id: </strong> {{ id }}</p>
+                <p>Olá <strong>{{ username }}</strong>. Isso é tudo.</p>
+                <p><strong>email: </strong> {{ email }}</p>
+                <p><strong>address: </strong> {{ address }}</p>
+                <button class="dangerous" @click="deleteUser">Excluir conta</button>
+                <div>
+                    <h2>Notes</h2>
+                    <form class="notes">
+                        <input type="text" name="title" placeholder='title'v-model="key"/><br>
+                        <input type="text" name="note" placeholder='note' v-model="value"/><br> 
+                        <button class="safe" @click="addNote">Adicionar</button>
+                        <button class="primary" @click="editNote">Editar</button>
+                    </form> 
+                    <div class="result-container">
+                        <h2>Minhas Notas</h2>
+                        <ul class="list-group">
+                            <li v-for="note in notes" class="list-group-item">
+                                <p>{{note[0]}} | {{note[1]}}</p>
+                                <button class="dangerous" @click="removeNote(note[0])">Remover</button>
+                            </li>
+                        </ul>
+                      </div>
+                </div>
             </div>
             <div v-if="sucess === false">
                 <p v-if="sucess === false">
@@ -83,19 +109,28 @@ Questões e explicação das pastas em  README.md -->
             </div>
         </div>
     </template>
+    <!-- ------ -->
 
+    <!-- Home -->
     <template id="home">
-        <h1> 
-            Bem vindo
-        </h1>
+        <div>
+            <nave-component></nave-component>
+            <h1> 
+                Bem vindo
+            </h1>
+        </div>
     </template>
+    <!-- ------ -->
 
+    <!-- Error Page Route -->
     <template id="error404">
-        <p> 
-            Página nõ encontrada
-        </p>
+        <div>
+            <nave-component></nave-component>
+            <p>Página nõ encontrada.</p>
+        </div>
     </template>
-    
+    <!-- ------ -->
+
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -123,9 +158,9 @@ Questões e explicação das pastas em  README.md -->
                     axios
                         .post(url, {
                             "username": this.username,
+                            "email": this.email,
                             "password": this.password,
                             "confirm_password": this.confirm_password,
-                            "email": this.email,
                             "address": this.address,
                             "permissions" : ['r'],
                         })
@@ -146,7 +181,7 @@ Questões e explicação das pastas em  README.md -->
             data() {
                 return {
                     password: '',
-                    username: '',
+                    email: '',
                     sucess: undefined,
                     response: {
                         msg: '',
@@ -159,13 +194,13 @@ Questões e explicação das pastas em  README.md -->
                     let url = 'http://localhost:3001/users/login';
                     axios
                         .post(url, {
-                            "username": this.username,
+                            "email": this.email,
                             "password": this.password,
                         })
                         .then(response => {
                             this.sucess = true;
-                            this.$router.push({name: 'perfil', params: { username: this.username } });
-
+                            localStorage.setItem("token", response.data.token);
+                            this.$router.push({name: 'perfil', params: { username: response.data.data.username } });
                         }, error => {
                             this.response.msg = error.response.data.message;
                             this.sucess = false;
@@ -173,6 +208,10 @@ Questões e explicação das pastas em  README.md -->
                 },
             }
         }
+
+        const Nav = Vue.component('nave-component', {
+            template: "#nave",
+        });
 
         const Singin = Vue.component('sing-in', {
             template: '#singin',
@@ -188,8 +227,10 @@ Questões e explicação das pastas em  README.md -->
         const Perfil = Vue.component('perfil', {
             template: '#perfil',
             created() {
-                this.getInfo(this.$route.params.username);
+                this.getInfo(this.$route.params.username, this.$route.params.token);
+                this.getAllNotes();
             },
+            
             data() {
                 return {
                     id: '',
@@ -200,41 +241,102 @@ Questões e explicação das pastas em  README.md -->
                     sucess: undefined,
                     response: {
                         msg: '',
-                    }
+                    },
+                    key: '',
+                    value: '',
+                    notes: [],
                 }
             },
-            methods: {
-                getInfo(username) {
+            methods: {  
+                getAllNotes() {
+                    axios.get('http://localhost:3001/store?token=' + localStorage.getItem("token"))
+                    .then(response => {
+                        this.sucess = true;
+                        return this.notes = response.data.data;
+                        // console.log(this.notes)
+                    })
+                    .catch(e => {
+                        alert("Error notes: Não adicione notas com mesmo titulo; caracteres especiais ou espaços.");
+                        this.sucess = false;
+                        this.response.msg = 'Erro ao buscar notas.';
+                    });
+                },
+                /*
+                    Resgate info of user and save the token
+                */ 
+                getInfo(username, token) {
                     let url = `http://localhost:3001/users/${username}`;
+                    console.log(token);
+
                     axios
-                        .get(url)
+                        .get(url + '?token=' + localStorage.getItem("token"))
                         .then(response => {
-                            console.log(response);
                             this.sucess = true;
                             this.id = response.data.data._id;
                             this.username = response.data.data.username;
                             this.email = response.data.data.email;
                             this.address = response.data.data.address;
                         }, error => {
-                            this.response.msg = error.response.data.message;
+                            this.response.msg = "Falha ao adicionar note";
                             this.sucess = false;
                         });
                 },
-
+              
+                addNote() {
+                    event.preventDefault();
+                    let response = axios.post('http://localhost:3001/store', {
+                            "token": localStorage.getItem("token"),
+                            "id": this.id,
+                            "key": this.key,
+                            "value": this.value
+                        }).then(_ => {
+                            this.getAllNotes();
+                        }).catch(e => {
+                            alert("Error notes: Não adicione notas com mesmo titulo; caracteres especiais ou espaços.");
+                        });
+                    },
+                    editNote() {
+                        event.stopPropagation();
+                        event.preventDefault();
+                        axios.put('http://localhost:3001/store?token=' + localStorage.getItem("token"), {
+                            "id": this.id,
+                            "key": this.key,
+                            "value": this.value
+                        }).then(_ => {
+                            this.getAllNotes();
+                        });
+                        alert(response.message);
+                    },
+                    removeNote(key) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    axios.delete('http://localhost:3001/store', {
+                        params: {
+                            "id": this.id,
+                            "key": key,
+                            "token": localStorage.getItem("token"),
+                        }
+                    }).then(_ => {
+                        this.getAllNotes();
+                    })
+                },
                 // deleta um usuarios
                 deleteUser() {
                     event.preventDefault();
                     let url = `http://localhost:3001/users/delete/${this.id}`; // busca pelo id
                     axios
-                        .delete(url)
-                        .then(response => {
+                        .delete(url, {
+                            params: {
+                                "token": localStorage.getItem("token"),
+                            }
+                        }).then(response => {
                             console.log(response);
                             this.sucess = false;
                             this.response.msg = response.data.message;
                             // tempo para o usuário let a mensagem que foi excluido
                             setTimeout(() => {
                                 this.$router.push({name: 'singin'});
-                            }, 2000);
+                            }, 500);
                         }, error => {
                             console.log(error)
                             this.sucess = true;
@@ -253,25 +355,26 @@ Questões e explicação das pastas em  README.md -->
 
         let router = new VueRouter({
             mode: 'history',
-                routes: [
-                {
-                    path: '/user-login', name: 'home', component: Home 
-                },
-                {
-                    path: '/singin', name: 'singin', component: Singin, 
-                },
-                {
-                    path: '/singup', name: 'singup', component: Singup 
-                },
-                {      
-                    path: '/perfil/:username', name: 'perfil', component: Perfil
-                },
-                {
-                    path: '*', name: 'error', component: ErrorNotFound
-                }
+            routes: [
+            {
+                path: '/', name: 'home', component: Home 
+            },
+            {
+                path: '/singin', name: 'singin', component: Singin, 
+            },
+            {
+                path: '/singup', name: 'singup', component: Singup 
+            },
+            {      
+                path: '/perfil/:username/', name: 'perfil', component: Perfil
+            },
+            {
+                path: '*', name: 'error', component: ErrorNotFound
+            }
             ]
         });
 
+    
         let app = new Vue({
             el: '#app',
             router, 

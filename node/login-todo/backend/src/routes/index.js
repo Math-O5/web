@@ -1,3 +1,10 @@
+// Desenvolvido por:
+// Nome: Mathias Fernandes
+// USP:  10734352
+// email: mathfernandes@usp.br
+// email2: mathfern4@gmail.com
+
+// Questões e explicação das pastas em  README.md
 'use strict'
 
 const express = require('express');

@@ -1,3 +1,13 @@
+/*
+    Desenvolvido por:
+    Nome: Mathias Fernandes
+    USP:  10734352
+    email: mathfernandes@usp.br
+    email2: mathfern4@gmail.com
+
+    Explicação das pastas em  README.md
+*/ 
+
 'use strict'
 
 const mongoose = require('mongoose');

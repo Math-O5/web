@@ -79,11 +79,41 @@ input[type=submit]:hover {
     color: rgb(185, 15, 15);
 }
 
+ul li {
+    display: inline-block;
+}
+
+.notes {
+    display: inline-block;
+}
+
 button {
     padding: 10px 20px;
     background-color: #45a049;
     color: white;
 }
+
+button.dangerous {
+    padding: 5px 5px;
+    background-color: #a01919;
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+} 
+
+button.primary {
+    padding: 10px 20px;
+    background-color: #2d7481;
+    color: white;
+    border-radius: 10px;
+}
+
+button.safe {
+    padding: 10px 20px;
+    background-color: #149902;
+    color: white;
+    border-radius: 10px;
+}
+
 
 a {
     margin: 20px 0 20px;

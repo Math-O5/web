@@ -1,3 +1,10 @@
+// Desenvolvido por:
+// Nome: Mathias Fernandes
+// USP:  10734352
+// email: mathfernandes@usp.br
+// email2: mathfern4@gmail.com
+
+// Questões e explicação das pastas em  README.md
 'use strict';
 
 // this scrutre is from https://www.youtube.com/watch?v=PknC5SCkwjo&list=PLHlHvK2lnJndvvycjBqQAbgEDqXxKLoqn&index=24&t=485s
@@ -38,7 +45,7 @@ ValidationContract.prototype.hasSpace = (value , message) => {
 }
 
 ValidationContract.prototype.isEqual = (value , confirm, message) => {
-    if (value === !confirm)
+    if (value !== confirm)
         errors.push({ message: message });
 }
 

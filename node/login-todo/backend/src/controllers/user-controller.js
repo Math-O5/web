@@ -1,39 +1,20 @@
+/*
+    Desenvolvido por:
+    Nome: Mathias Fernandes
+    USP:  10734352
+    email: mathfernandes@usp.br
+    email2: mathfern4@gmail.com
+
+    Explicação das pastas em  README.md
+*/ 
 'use strict'
 
 const mongoose = require('mongoose');
+const authService = require('../services/auth-service');
 const User = mongoose.model('User');
 const bcrypt = require('bcryptjs');
 const ValidationContract = require('../validators/validators');
 mongoose.set('useFindAndModify', false);
-
-/**
- * @obj debug functions
- */
-exports.get = (req, res, next) => {
-    User
-        .find({active: true}, 'id username permissions') //all
-        .then(data => {
-            res.status(200).send({data});
-        }).catch(e =>  {
-            res.status(400).send({
-                message: 'Falha ao buscar user',
-                data: e
-            });
-        });
-}
-
-exports.getById = (req, res, next) => {
-    User
-        .findById(req.params.id) 
-        .then(data => {
-            res.status(200).send({data});
-        }).catch(e =>  {
-            res.status(400).send({
-                message: 'Falha ao buscar user',
-                data: e
-            });
-        });
-}
 
 /**
  * @route GET http://localhost:3001/users/perfil/:username
@@ -131,7 +112,6 @@ exports.register = (req, res, next) => {
                 });
             });
         });
-
 };
 
 /**
@@ -139,7 +119,7 @@ exports.register = (req, res, next) => {
  */
 exports.login = (req, res, next) => {
     User
-        .findOne({ username: req.body.username }) // search user by username
+        .findOne({ email: req.body.email }) // search user by username
         .then(user => {
             if(!user) {
                 return res.status(400).json({
@@ -186,15 +166,78 @@ exports.login = (req, res, next) => {
  */
 exports.delete = (req, res, next) => {
     User
-            .findOneAndDelete(req.params.id)
-            .then(x => {
-                res.status(200).send({
-                    message: 'Deletado.'
-                });
-            }).catch(e => {
+        .findOneAndDelete(req.params.id)
+        .then(x => {
+            res.status(200).send({
+                message: 'Deletado.'
+            });
+        }).catch(e => {
+            res.status(400).send({
+                message: 'Falha ao deletar.',
+                data: e
+            });
+        });
+};
+
+/** 
+ *  @params email of user
+ *  @params password of user
+ *  @return info user and token to keep login 
+ * */ 
+exports.authenticate = async(req, res, next) => {
+    try {
+        const user = await User.findOne({ 
+            email: req.body.email,
+        }); 
+        // find the client by email and password
+        
+        /**
+         * if no client was found then error
+         */
+        if(!user) {
+            res.status(404).send({
+                message: 'Email inválido',
+            });
+            return;
+        }
+    
+        const token = await authService.generateToken({
+            id: user._id,
+            email: user.email,
+            name: user.username
+        });
+        
+        bcrypt.compare(req.body.password, user.password) // compare passwords
+        .then(isMatch => {
+            if(isMatch) {
+                res.status(201).send({
+                        token: token,
+                        data: {
+                            id: user._id,
+                            username: user.username,
+                            email: user.email,
+                            address: user.address,
+                            sucess: true,
+
+                        },
+                        message: 'Acesso liberado!'
+                    });
+                } else {
+                    res.status(400).send({
+                        message: 'Senha ou Usuários incorretos.',
+                        sucess: false,
+                    });
+                }
+            }).catch(err => {
                 res.status(400).send({
-                    message: 'Falha ao deletar.',
-                    data: e
+                    message: 'Senha ou Usuários incorretos.',
+                    sucess: false,
+                    data: user,
                 });
             });
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao autenticar user',
+        });
+    }
 };

@@ -1,3 +1,10 @@
+// Desenvolvido por:
+// Nome: Mathias Fernandes
+// USP:  10734352
+// email: mathfernandes@usp.br
+// email2: mathfern4@gmail.com
+
+// Questões e explicação das pastas em  README.md
 'use strict'
 
 const express = require('express');
@@ -20,6 +27,7 @@ const User = require('./models/user');
 
 const routesApp = require('./routes/index');
 const routesUsers = require('./routes/users');
+const routesStore = require('./routes/stores');
 
 app.use(function (req, res, next) {
     res.setHeader('access-control-allow-origin', '*');
@@ -40,5 +48,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // carregar rotas
 app.use('/', routesApp);
 app.use('/users', routesUsers);
+app.use('/store', routesStore);
 
 module.exports = app;
