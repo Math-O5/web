@@ -1,5 +1,15 @@
 // This was based on https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d
-
+/**
+ * We dont want to use the uggly for(let i = 0; i < n; ++i)
+ * 
+ * In funtional programming, we use explict clear commands like 
+ * 
+ *  * ForEach
+ *  * Filters
+ *  * reduce
+ *  * map
+ * 
+ */ 
 // infos
 let people = [
     {id: 0, name: "Eeeny", age: 7, is_user: "false"},

@@ -1,7 +1,7 @@
 # WEB
 <h3>Apps</h3>
 <ul>
-  <li><a href="js/basic_introdution/"> Tutorial JS (js)</a></li>
+  <li><a href="js/basic_introdution/README.md"> Tutorial JS (js)</a></li>
   <li><a href="node/user-login/">User login autenticate (nodejs)</a></li>
   <li><a href="vue/todo_list/">Todo List (vue)</a></li>
   <li><a href="js/challenge_2_calculadora/">Calculadora (js)</a></li>
