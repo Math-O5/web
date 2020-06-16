@@ -10,6 +10,7 @@
     <li><a href="events/draw.js"></a>Draw (Mouse event)</li>
     <li><a href="events/drag.js"></a>Drag (Mouse event)</li>
     <li><a href="events/scrow.js"></a>Scroll (Mouse event)</li>
+    <li><a href="middleware.js"></a>Middleware</li>
 </ul>
 <h2>STL JS</h2>
 <ul>

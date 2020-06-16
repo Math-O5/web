@@ -27,7 +27,7 @@ function createPost(post, callback) {
 // async / await
 // This run asyncronous, watching createPost
 async function init() {
-    await createPost({ title: "k", body: 'rh' });
+    await createPost({ title: "k", body: 'rh' }); // the function stop here, until the task is complete
     getPosts();
 }
 
