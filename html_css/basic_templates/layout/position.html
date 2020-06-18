@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Position</title>
+    <style>
+        .static {
+            top: 100px;
+            left: 100px;
+            background-color: steelblue;
+        }
+        .fixed {
+            position: fixed;
+            bottom: 30px;
+            right: 0px;
+            background-color: tomato;
+        }
+
+        .relative1{
+            position: relative;
+            left: 50px;
+            top: 5px;
+            background-color: seagreen; 
+        }
+
+        .abolute1 {
+            position: absolute;
+            left: 350px;
+            top: 150px;
+            background-color: violet;
+        }
+
+        .relative2 {
+            position: relative;
+            left: 150px;
+            top: 25px;
+            background-color: seagreen; 
+        }
+
+        .abolute2 {
+            position: absolute;
+            left: 250px;
+            top: 250px;
+            background-color: violet;
+        }
+
+        .sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            background-color: #777;
+            top: 10px;
+        }
+
+        @media (max-width: 600px;) {
+            .muito-pequeno { display: block; }
+        }
+
+        @media (max-width: 1000px), (orientation: portrait) {
+            .pequeno-retrato { display:block;}
+        }
+    </style>
+</head>
+
+<body>
+    <div class="static">Static (Padrão)</div>
+    <div class="fixed">Fixed</div>
+    <div class="relative1">Relative</div>
+    <div class="absolute1">Absolute</div>
+
+    <div class="relative2">
+        <div class="absolute2"></div>
+    </div>
+
+    <div class="sticky">Sticky</div>
+    <p style="padding-bottom: 2000px;">Opa</p>
+</body>
+
+</html>
