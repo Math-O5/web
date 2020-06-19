@@ -1,0 +1,46 @@
+<!-- https://www.youtube.com/watch?v=BVbdZ1133JU&list=PL4cUxeGkcC9ij8CfkAY2RAGb-tmkNwQHG&index=9 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+<body>
+
+    <div id="app"></div>
+    <script type="text/babel">
+        class App extends React.Component {
+            state = {
+                name: 'Ryu',
+                age: 30,
+            }
+            handleClick = (event) => {
+                console.log(event.target);
+            }
+            handleMouseOver = (event) => {
+                console.log(event)
+            }
+            handleCopy = (event) => {
+                console.log(event)
+            }
+            render() {
+                return (
+                     <div className="app-content">
+                        <h1>Hello React</h1>
+                        <p>My name is {this.state.name}</p>
+                        <button onClick={this.handleClick}>Click here</button>
+                        <button onMouseOver={this.handleMouseOver}>Hover me</button>
+                        <p onCopy={this.handleCopy}>Dont copy</p>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<App />, document.getElementById('app'))
+    </script>
+</body>
+</html>
