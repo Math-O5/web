@@ -2,8 +2,9 @@
 <h3>Apps JS</h3>
 <ul>
   <li><a href="js/basic_introdution/README.md"> Tutorial JS (js)</a></li>
-  <li><a href="js/exercicio_2_dom/README.md">exercicios DOM (js)</a></li>
+  <li><a href="js/automation/">Autonomo (js)</a></li>
   <li><a href="js/challenge_2_calculadora/">Calculadora (js)</a></li>
+  <li><a href="js/exercicio_2_dom/README.md">exercicios DOM (js)</a></li>
   <li><a href="https://github.com/Math-O5/desafios-quarentena/">5 Jogos em JS (desafio USPCodeLab)</a></li>
 </ul>
 <h3>Apps NodeJS</h3>
@@ -39,3 +40,8 @@ Cada pasta contém exercicios, desafios e exemplos.</br>
 </br>
 EN</br>
 This repo created to do some-tutorials of web-front and backend with all kind of tools.</br>
+
+<h4>Source</h4>
+<ul>
+  <li><a href="https://eloquentjavascript.net/">JS Eloquent (.net)</a></li>
+</ul>
