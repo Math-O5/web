@@ -28,6 +28,8 @@
   <li><a href="vue/exercicio">Search (vue)</a></li>
   <li><a href="angular/heroes-list/angular-tour-of-heroes/">Serviços com Angular(Angular)</a></li>  
   <li><a href="angular/ngchart">Gráficos com Chart.js (ng2-chart - Angular)</a></li>  
+  <li><a href="react/crud">CRUD e Serviços com React</a></li>  
+
 </ul>
 <h3>Apps Django</h3>
 <ul>
