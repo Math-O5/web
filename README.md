@@ -18,7 +18,7 @@
 </ul>
 <h3>Apps html&css only</h3>
 <ul>
-  <li><a href="html_css/profile_2">Profiles html&css</a></li>
+  <li><a href="html_css/">Profiles html&css</a></li>
   <li><a href="html_css/basic_templates/forms">Forms html&css</a></li>
   <li><a href="html_css/basic_templates/layout">Most useful Tags html&css</a></li>
 </ul>
