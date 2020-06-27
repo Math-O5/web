@@ -14,6 +14,7 @@
   <li><a href="node/store/">Store key-value (nodejs)</a></li>
   <li><a href="node/user-login/">User login autenticate (nodejs)</a></li>
   <li><a href="node/login-todo/">Autenticate with token and acess to App Store(nodejs and vue)</a></li>
+  <li><a href="https://github.com/Math-O5/desafios-quarentena/tree/master/Desafio%206%20-%20resolu%C3%A7%C3%A3o">Bot Telegram (desafio USPCodeLab)</a></li>
 </ul>
 <h3>Apps html&css only</h3>
 <ul>
@@ -34,6 +35,7 @@
 <h3>Apps Django</h3>
 <ul>
   <li><a href="django/api_pontos_turisticos/">API REST (django e django REST)</a></li>
+  <li><a href="https://github.com/Math-O5/acolhe/"> Acolhe, um site para encontrar abrigos.(Django)</a></li>
 </ul>
 
 PT-BR</br>
