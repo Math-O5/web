@@ -1,11 +1,9 @@
 /academy
 /helloAngular
-/meat-app-starter
-/meat-app-template
 /tp
 **/node_modules
 .DS_STORE
-
+/first
 /dist/
 /bazel-out
 /integration/bazel/bazel-*
