@@ -35,4 +35,5 @@ function createPost(post, callback) {
 // Execution
 getPosts();
 createPost({title: 'oi', body: 'ahahah', lixo: 'Will I overflow?'}, getPosts);
+createPost({title: 'de novo', body: 'hihihi', lixo: 'Will I overflow?'}, getPosts);
 

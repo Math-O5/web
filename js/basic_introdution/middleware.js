@@ -17,7 +17,7 @@ const exec = (ctx, ...middlewares) => {
         middlewares && indice < middlewares.length &&
             middlewares[indice](ctx, () => execPasso(indice + 1))
     }
-    execPasso(0)
+    execPasso(0);
 }
 
 const ctx = {}

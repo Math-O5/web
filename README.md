@@ -28,9 +28,9 @@
   <li><a href="vue/exercicio">Forms (vue)</a></li>
   <li><a href="vue/exercicio">Search (vue)</a></li>
   <li><a href="angular/heroes-list/angular-tour-of-heroes/">Serviços com Angular(Angular)</a></li>  
-  <li><a href="angular/ngchart">Gráficos com Chart.js (ng2-chart - Angular)</a></li>  
-  <li><a href="react/crud">CRUD e Serviços com React</a></li>  
-
+  <li><a href="angular/ngchart">Gráficos com Chart.js (ng2-chart - Angular)</a></li> 
+  <li><a href="react/crud">CRUD e Serviços com React</a></li> 
+  <li><a href="https://github.com/Math-O5/petshop-1">Aplicação completa de um petshop em React + Nodejs + Mongoose</a></li>  
 </ul>
 <h3>Apps Django</h3>
 <ul>

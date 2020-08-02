@@ -1,3 +1,8 @@
+## Aluno
+Nome: Mathias Fernandes Duarte Coelho
+NUSP: 10734352
+WEB
+
 ## Questions
 
 1. 
@@ -30,6 +35,17 @@ NoSQL is a database which ensure two os the requirements of CAP. CP or PA, the a
     c. DOCUMENT STORES: This is a subclass of Key-Store, they encapsule the in a standard format,to the document it is storing, like a METADATA. The MongoDB is document store.
 
     d. graph database: As the name says, it is the data represent as a graph, where the entity is a note and edge are the relationship.
+
+3. complete_api
+
+    serviços em http://localhost:3000/product/
+    serviços em http://localhost:3000/clients/
+    serviços em http://localhost:3000/orders/
+
+4. petService
+
+    serviços em http://localhost:3000/service/
+    serviços em http://localhost:3000/service/partner/hours
 
 Source:
 [1](CAP Theorem) https://www.educative.io/edpresso/what-is-the-cap-theorem

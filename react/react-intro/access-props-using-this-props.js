@@ -1,7 +1,6 @@
 class ReturnTempPassword extends React.Component {
   constructor(props) {
     super(props);
-
   }
   render() {
     return (
@@ -17,7 +16,6 @@ class ReturnTempPassword extends React.Component {
 class ResetPassword extends React.Component {
   constructor(props) {
     super(props);
-
   }
   render() {
     return (

@@ -1,3 +1,10 @@
+/**
+ * autor: Mathias Fernandes
+ * nusp: 10734352
+ * email pessoal: mathfern4@gmail.com
+ * emailUSP: mathfernandes@usp.br
+ */
+
 'use strict'
 
 const mongoose = require('mongoose');
@@ -7,8 +14,7 @@ const schema = new Schema({
     title: {
         type: String, 
         required: true,
-        trim: true,
-        unique: true,
+        trim: true
     }, 
     slug: {
         type: String,

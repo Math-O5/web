@@ -19,6 +19,6 @@ form.addEventListener("submit", (event) => {
     })
     .then(function(response) {
         alert("Sucesso")
-    })
+    });
 
 })
