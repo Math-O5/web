@@ -1,6 +1,6 @@
-const TIME_EXECUTION = 100;
+const TIME_EXECUTION = 1000;
 
-function executeRobot(state, route, memory) {
+function executeRobot(state, robot, memory) {
     let totalTurns = 0;
     for(let i = 0; i < TIME_EXECUTION; ++i) {
         for(let turn = 0;turn < 3*MAX_STOPS; turn++) {
@@ -29,4 +29,4 @@ function compareRobots(robot1, memory1, robot2, memory2) {
     console.log("Avg2: ", avgRobot2);
 }
   
-compareRobots(routeRobot, [], goalOrientedRobot, []);
+compareRobots(nextOrientation, [], randomRobot, []);
