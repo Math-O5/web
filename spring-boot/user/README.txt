@@ -1,3 +1,50 @@
+## Status Development
+Autenticação JWT (done)
+CRUD User (done)
+    - Create, update, delete (done)
+CRUD ADDRESS (doing)
+    - Create, update (Done)
+    - Querying (X)
+Docker compose (Doing)
+    - set up env docker (Done)
+    - pass to yml (X)
+Documentation (Doing)
+    - Config swagger (Done)
+    - customize swagger (X)
+Test (Doing)
+    - authentication (Done)
+    - address (X)
+
+## Routes
+
+### Monitor (health)
+GET http://localhost:8080/api/v1/health
+
+### Register
+POST http://localhost:8080/api/v1/auth/register
+{
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "john.doe@example.com",
+    "password": "1234"
+}
+
+### Login
+POST http://localhost:8080/api/v1/auth/authentication
+{
+    "email": "john.doe@example.com",
+    "password": "1234"
+}
+
+### Create address
+POST http://localhost:8080/api/v1/address
+Authorization: Bearer {{new-auth-token}}
+{
+    "street":"av sao carlos",
+    "city":"São carlos",
+    "zipCode":"0802"
+}
+
 
 Install database
 
