@@ -1,22 +1,23 @@
 ## Requeriments
 - Docker
 - Java 17 or higher (https://spring.io/blog/2022/05/24/preparing-for-spring-boot-3-0)
-
+- Optional: Use IntelliJ IDEA for simpler start.  
 
 ## Status Development
-Autenticação JWT (done)
-CRUD User (done)
+
+- Autenticação JWT (done)
+- CRUD User (done)
     - Create, update, delete (done)
-CRUD ADDRESS (doing)
+- CRUD ADDRESS (doing)
     - Create, update (Done)
     - Querying (X)
-Docker compose (Doing)
+- Docker compose (Doing)
     - set up env docker (Done)
     - pass to yml (X)
-Documentation (Doing)
+- Documentation (Doing)
     - Config swagger (Done)
     - customize swagger (X)
-Test (Doing)
+- Test (Doing)
     - authentication (Done)
     - address (X)
 
