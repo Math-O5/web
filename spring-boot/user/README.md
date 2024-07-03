@@ -1,3 +1,8 @@
+## Requeriments
+- Docker
+- Java 17 or higher (https://spring.io/blog/2022/05/24/preparing-for-spring-boot-3-0)
+
+
 ## Status Development
 Autenticação JWT (done)
 CRUD User (done)
